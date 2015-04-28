@@ -13,18 +13,11 @@ import java.rmi.RemoteException;
 * @author groupe1
 *
 */
-public interface ControlerRMIServer extends ControlerRemote {
+public interface CRMIClient extends ControlerRemote {
 	/**
 	 * 
 	 * @return
 	 * @throws RemoteException
 	 */
-	public String getInfoServer() throws RemoteException;
-
-	/**
-	 * 
-	 * @param cl
-	 * @throws RemoteException
-	 */
-	void regClient(ControlerRMIClient cl) throws RemoteException;
+	public String getInfoClient() throws RemoteException;
 }

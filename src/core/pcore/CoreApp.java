@@ -1,8 +1,19 @@
 package core.pcore;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ConnectException;
+import java.net.NoRouteToHostException;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
-import model.ModelRMIClient;
+import model.MSocketServer;
 
 /**
 *
@@ -17,20 +28,105 @@ public final class CoreApp {
 	 * @param args
 	 */
 	public static void mainApp(String[] args) {
+		System.out.println("\n>>> ======================== <<<");
+		System.out.println(">>> Main CoreApp : Lancement <<<");
+		System.out.println(">>> ======================== <<<\n");
 		/*
 		 * Main code of the application
 		 * DevOps Write some code here
 		 */
-		System.out.println("\n>>> ======================== <<<");
-		System.out.println(">>> Main CoreApp : Lancement <<<");
-		System.out.println(">>> ======================== <<<\n");
 		
+/*		
 		try {
 			ModelRMIClient test = new ModelRMIClient();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			MSocketServer test = new MSocketServer();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			// String ipAddress = "8.8.8.8";
+			// String hostName = InetAddress.getByName(ipAddress).getHostName();
+
+			String hostNameIP = "127.0.0.1";
+
+			// String serverNameUrl = "www-cache.ujf-grenoble.fr"; //
+			// dev.ephira.org
+			// String ip =
+			// InetAddress.getByName(serverNameUrl).getHostAddress();
+
+			Socket sock = new Socket(hostNameIP, 8181);
+			sock.setSoTimeout(5000);
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					sock.getInputStream()));
+
+			
+			 * ou directement PrintWriter out =new
+			 * PrintWriter(sock.getOutputStream()); necessité d'utiliser
+			 * out.flush() voir avec BufferedWriter out2 =new BufferedWriter(new
+			 * OutputStreamWriter(sock.getOutputStream())); et en utilisant
+			 * out2.write(msg); out2.flush();
+			 
+			PrintWriter out = new PrintWriter(new BufferedWriter(
+					new OutputStreamWriter(sock.getOutputStream())), true);
+
+			// String msg = "GET http://www.google.fr/index.html\n";
+			String msg = "ACTION=test";
+
+			out.println(msg);
+
+			// ou directement avec input streamreader
+			String textString = null;
+
+			// long timeout = System.currentTimeMillis()+2000l; //10 secondes de
+			// timeout
+
+			System.out.println("Debut reception");
+
+			// Nous n'utilisons pas in.ready ici car sinon le client
+			// n'attendrais pas que le serveur réponde
+			// Mais il faudrait utiliser un sytème de temporisation afin
+			// d'attendre la réponse du serveur et conserver le in ready
+
+			// while ((System.currentTimeMillis()<timeout) && in.ready()==true)
+			// {
+			// ((in.ready()==true) || (System.currentTimeMillis()<timeout)) &&
+			// ((textString = in.readLine()) != null)
+			// if ((textString = in.readLine()) != null) {
+			while ((textString = in.readLine()) != null) {
+				// timeout=System.currentTimeMillis();
+				System.out.print(textString);
+			}
+			System.out.println("\nFin reception");
+
+			in.close();
+			out.close();
+			sock.close();
+		} catch (UnknownHostException ex) {
+			System.err.println("Unknown host");
+		} catch (NoRouteToHostException ex) {
+			System.err.println("Unreachable host");
+		} catch (ConnectException ex) {
+			System.err.println("Connection refused");
+		} catch (SocketTimeoutException e) {
+			System.err.println(e.getMessage());
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}*/
 	}
 
 	/*

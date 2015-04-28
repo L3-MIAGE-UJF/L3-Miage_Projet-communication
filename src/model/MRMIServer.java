@@ -10,8 +10,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 
-import controler.ControlerRMIServer;
-import controler.ControlerRMIClient;
+import controler.CRMIServer;
+import controler.CRMIClient;
 
 /**
 *
@@ -19,7 +19,7 @@ import controler.ControlerRMIClient;
 * @author groupe1
 *
 */
-public class ModelRMIServer extends UnicastRemoteObject implements ControlerRMIServer, Model {
+public class MRMIServer extends UnicastRemoteObject implements CRMIServer, Model {
 
 	/**
 	 * 
@@ -29,13 +29,13 @@ public class ModelRMIServer extends UnicastRemoteObject implements ControlerRMIS
 	/**
 	 * 
 	 */
-	private volatile ControlerRMIClient cl;
+	private volatile CRMIClient cl;
 	
 	/**
 	 * 
 	 * @throws RemoteException
 	 */
-	public ModelRMIServer() throws RemoteException {
+	public MRMIServer() throws RemoteException {
 		super();
 
 		try {
@@ -74,7 +74,7 @@ public class ModelRMIServer extends UnicastRemoteObject implements ControlerRMIS
 	}
 
 	@Override
-	public void regClient(ControlerRMIClient cl) throws RemoteException {
+	public void regClient(CRMIClient cl) throws RemoteException {
 		this.cl=cl;
 		System.out.println("ModelRMIServer UID="+serialVersionUID+" : regClient() : Chaine Recue "+cl.getInfoClient());
 	}

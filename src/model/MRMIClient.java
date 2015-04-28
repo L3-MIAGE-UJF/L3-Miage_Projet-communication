@@ -8,8 +8,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 
-import controler.ControlerRMIClient;
-import controler.ControlerRMIServer;
+import controler.CRMIClient;
+import controler.CRMIServer;
 
 /**
 *
@@ -17,7 +17,7 @@ import controler.ControlerRMIServer;
 * @author groupe1
 *
 */
-public class ModelRMIClient extends UnicastRemoteObject implements ControlerRMIClient, Model {
+public class MRMIClient extends UnicastRemoteObject implements CRMIClient, Model {
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class ModelRMIClient extends UnicastRemoteObject implements ControlerRMIC
 	 * 
 	 * @throws RemoteException
 	 */
-	public ModelRMIClient() throws RemoteException {
+	public MRMIClient() throws RemoteException {
 		super();
 		//ou super(0) ou UnicastRemoteObject.exportObject(this, 0); pas nécessaire car on étend déja UnicastRemoteObject 
 		
@@ -42,11 +42,11 @@ public class ModelRMIClient extends UnicastRemoteObject implements ControlerRMIC
 			
 			Remote r = Naming.lookup("rmi://127.0.0.1/testRMIserver");
 
-			if (r instanceof ControlerRMIServer) {
-				String s = ((ControlerRMIServer) r).getInfoServer();
+			if (r instanceof CRMIServer) {
+				String s = ((CRMIServer) r).getInfoServer();
 				System.out.println("ModelRMIClient UID="+serialVersionUID+" : chaine renvoyee = " + s);
 				
-				ControlerRMIServer serv = (ControlerRMIServer) r;
+				CRMIServer serv = (CRMIServer) r;
 				
 				this.regOnServer(serv);
 			}
@@ -74,7 +74,7 @@ public class ModelRMIClient extends UnicastRemoteObject implements ControlerRMIC
 	 * 
 	 * @param remoteServer
 	 */
-	public void regOnServer(ControlerRMIServer remoteServer) {
+	public void regOnServer(CRMIServer remoteServer) {
 		try {
 			remoteServer.regClient(this);
 		} catch (RemoteException e) {
