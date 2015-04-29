@@ -64,7 +64,7 @@ public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerR
 	}
 
 	@Override
-	public void regClient(MRMIClientRemote client) throws RemoteException {
+	public void registerClient(MRMIClientRemote client) throws RemoteException {
 		this.client=client;
 		System.out.println("ModelRMIServer UID="+serialVersionUID+" : regClient() : Chaine Recue "+client.getInfoClient());
 	}

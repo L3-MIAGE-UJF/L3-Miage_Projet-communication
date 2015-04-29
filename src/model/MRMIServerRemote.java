@@ -27,5 +27,5 @@ public interface MRMIServerRemote extends Remote {
 	 * @param client
 	 * @throws RemoteException
 	 */
-	void regClient(MRMIClientRemote client) throws RemoteException;
+	void registerClient(MRMIClientRemote client) throws RemoteException;
 }

@@ -73,7 +73,7 @@ public class MRMIClient extends UnicastRemoteObject implements MRMI, MRMIClientR
 	 */
 	public void regOnServer(MRMIServerRemote remoteServer) {
 		try {
-			remoteServer.regClient(this);
+			remoteServer.registerClient(this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
