@@ -1,18 +1,17 @@
 ######################################################
-# Liste des modèles a activer                        #
+# Liste des controleurs a activer                    #
 ######################################################
 #                                                    #
 # Il est nécessaire de respecter le format suivant : # 
-# > Exemple pour des modèles déja définis :          #
+# > Exemple pour des controleurs déja définis :      #
 # modele_x                                           #
 #                                                    # 
-# > Exemple pour des modèles définis par le dev Ops: #
+# > Exemple pour des controleurs définis par         #
+# le dev Ops:                                        #
 # pmodel.mon_modele_x                                #
 #                                                    #
-# Les modèles developpés doivent se trouver dans le  #
-# package pmodel ils doivent être donc précédés de   #
-# ce dernier.                                        #
+# Les controleurs developpés doivent se trouver dans #
+# le package pmodel ils doivent être donc précédés   #
+# de ce dernier.                                     #
 ######################################################
-#ModelRMIServer
-#ModelRMIClient
-pmodel.test
+CRMIServer

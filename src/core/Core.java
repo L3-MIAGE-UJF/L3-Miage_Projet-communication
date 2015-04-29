@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import model.Model;
 import core.pcore.CoreApp;
 
 /**
@@ -32,19 +31,19 @@ public class Core {
 		/*
 		 * Déclaration des fichiers de configuration contenant la liste des modules a activer
 		 */
-		File file = new File("/home/d/douchetm/L3/projet-com/src/config/activated_model.list");
-		HashSet<String> activated_model_set = null;
+		File file = new File("/home/d/douchetm/L3/projet-com/src/config/activated_controller.list");
+		HashSet<String> activated_controller_set = null;
 		
 		/*
 		 * Parse of listing files
 		 */
-		activated_model_set=parseListModel(file);
+		activated_controller_set=parseListController(file);
 		
 		/*
 		 * Instantiation of listed nodes
 		 */
 		
-		if (instantiateListedNodes(activated_model_set)) {
+		if (instantiateListedNodes(activated_controller_set)) {
 			System.out.println("\n>>> Main Core : Tout les modules on étés correctement instanciés");
 		}
 		else {
@@ -54,6 +53,10 @@ public class Core {
 		/*
 		 * Execution of the mainApp() written by devOps
 		 */
+		System.out.println("\n>>> ======================== <<<");
+		System.out.println(">>> Main CoreApp : Lancement <<<");
+		System.out.println(">>> ======================== <<<\n");
+		
 		CoreApp.mainApp(args);
 	}
 
@@ -62,14 +65,14 @@ public class Core {
 	 * @param activated_model_set
 	 * @return
 	 */
-	private static boolean instantiateListedNodes(HashSet<String> activated_model_set) {
+	private static boolean instantiateListedNodes(HashSet<String> activated_controller_set) {
 		boolean ret = true;
-	    Iterator<String> iamodelSet=activated_model_set.iterator();
+	    Iterator<String> iaControllerSet=activated_controller_set.iterator();
 	    String currentModel = null;
 	    
-	    while(iamodelSet.hasNext()) {
+	    while(iaControllerSet.hasNext()) {
 			try {
-				currentModel=iamodelSet.next();
+				currentModel=iaControllerSet.next();
 				Class<?> exemple = Class.forName(currentModel);
 				//Model modele = (Model) exemple.newInstance();
 				exemple.newInstance();
@@ -91,8 +94,8 @@ public class Core {
 	 * @param activated_model_file
 	 * @return
 	 */
-	private static HashSet<String> parseListModel(File activated_model_file) {
-		HashSet<String> setListModel = new HashSet<String>();
+	private static HashSet<String> parseListController(File activated_controller_set) {
+		HashSet<String> setListController = new HashSet<String>();
 		
 		/*
 		 * FileInputStream is used for reading streams of raw bytes of data, like raw images.
@@ -101,7 +104,7 @@ public class Core {
 		 * FileInputStream reads the file byte by byte and FileReader reads the file character by character.
 		 */
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(activated_model_file))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(activated_controller_set))) {
 			/*
 			 * Déclaration des variables nécessaires pour l'utilisation de test avec expressions régulières
 			 */
@@ -115,7 +118,7 @@ public class Core {
 				line = line.trim();
 				matcher = regPatCom.matcher(line);
 				if (!matcher.matches() && !line.isEmpty()) {
-					setListModel.add("model."+line);
+					setListController.add("controller."+line);
 				}
 		    }
 		} catch (FileNotFoundException e) {
@@ -126,6 +129,6 @@ public class Core {
 			e.getMessage();
 		}
 		
-		return setListModel;
+		return setListController;
 	}
 }
