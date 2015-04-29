@@ -27,8 +27,25 @@ public class MRMIClient extends UnicastRemoteObject implements MRMI, MRMIClientR
 	 */
 	public MRMIClient() throws RemoteException {
 		super();
-		//ou super(0) ou UnicastRemoteObject.exportObject(this, 0); pas nécessaire car on étend déja UnicastRemoteObject 
-		
+		launchClient("127.0.0.1");
+	}
+
+	/**
+	 * 
+	 * @param ip
+	 * @throws RemoteException
+	 */
+	public MRMIClient(String ip) throws RemoteException {
+		super();
+		// TODO Match regexp of ip addr
+		launchClient(ip);
+	}
+	
+	/**
+	 * 
+	 * @param ip
+	 */
+	private void launchClient(String ip) {
 		try {
 			System.out.println("=================================================================");
 			System.out.println("ModelRMIClient UID="+serialVersionUID+" : Lancement du client");
@@ -37,7 +54,7 @@ public class MRMIClient extends UnicastRemoteObject implements MRMI, MRMIClientR
 				System.setSecurityManager(new RMISecurityManager());
 			}
 
-			Remote r = Naming.lookup("rmi://127.0.0.1/testRMIserver");
+			Remote r = Naming.lookup("rmi://"+ip+"/testRMIserver");
 
 			if (r instanceof MRMIServerRemote) {
 				String s = ((MRMIServerRemote) r).getInfoServer();
@@ -47,7 +64,10 @@ public class MRMIClient extends UnicastRemoteObject implements MRMI, MRMIClientR
 				
 				this.regOnServer(serv);
 			}
-			else { System.out.println("ModelRMIClient UID="+serialVersionUID+" : Instance incorrecte"); }
+			else {
+				System.out.println("ModelRMIClient UID="+serialVersionUID+" : Instance incorrecte");
+			}
+		
 			System.out.println("ModelRMIClient UID="+serialVersionUID+" : Fin du client");
 			System.out.println("=================================================================");
 		} catch (RemoteException e) {
@@ -63,7 +83,6 @@ public class MRMIClient extends UnicastRemoteObject implements MRMI, MRMIClientR
 
 	@Override
 	public String getInfoClient() throws RemoteException {
-		System.out.println("ModelRMIClient UID="+serialVersionUID+" Server call me !");
 		return "Retour ModelRMIClient UID="+serialVersionUID;
 	}
 

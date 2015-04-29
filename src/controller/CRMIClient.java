@@ -19,9 +19,24 @@ import view.VRMIServer;
 *
 */
 public class CRMIClient extends CRMI<MRMIClient, VRMIClient> {
+	/**
+	 * Default local 127.0.0.1
+	 * @throws RemoteException
+	 */
 	public CRMIClient() throws RemoteException {
 		super();
 		this.model = new MRMIClient();
+		//this.view = new VRMIServer();
+	}
+	
+	/**
+	 * 
+	 * @param ip
+	 * @throws RemoteException
+	 */
+	public CRMIClient(String ip) throws RemoteException {
+		super();
+		this.model = new MRMIClient(ip);
 		//this.view = new VRMIServer();
 	}
 }
