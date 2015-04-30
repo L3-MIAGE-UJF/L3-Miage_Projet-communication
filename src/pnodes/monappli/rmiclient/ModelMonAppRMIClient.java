@@ -1,19 +1,20 @@
-package pnodes.monapplirmiclient;
+package pnodes.monappli.rmiclient;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
-import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClient;
-import onodes.RMI.Client.ModelRMIClientRemote;
+import pnodes.monappli.rmiserver.ModelMonAppRMIServerRemote;
 
 //public abstract class ModelRMIClient<MR extends ModelRMIClientRemote> extends UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote 
-public class ModelMonAppRMIClient extends ModelRMIClient<ModelMonAppRMIClientRemote> implements ModelMonAppRMIClientRemote {
+public class ModelMonAppRMIClient extends
+		ModelRMIClient<ModelMonAppRMIServerRemote> implements
+		ModelMonAppRMIClientRemote {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6077450206617157617L;
-	
+
 	public ModelMonAppRMIClient() throws RemoteException {
 		super();
 	}
@@ -24,8 +25,13 @@ public class ModelMonAppRMIClient extends ModelRMIClient<ModelMonAppRMIClientRem
 
 	@Override
 	public String mamethodealacon() {
-		// TODO Auto-generated method stub
-		return null;
+try {
+	System.out.println(this.serv.methodeserveur());
+} catch (RemoteException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+		return "Coucou je suis le client";
 	}
 
 }

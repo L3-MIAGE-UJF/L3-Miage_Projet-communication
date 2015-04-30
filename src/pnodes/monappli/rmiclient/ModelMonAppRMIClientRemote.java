@@ -1,4 +1,4 @@
-package pnodes.monapplirmiclient;
+package pnodes.monappli.rmiclient;
 
 import java.rmi.RemoteException;
 
