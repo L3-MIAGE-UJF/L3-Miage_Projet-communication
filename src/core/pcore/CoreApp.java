@@ -26,9 +26,7 @@ public final class CoreApp {
 			
 			ControllerRMIClient test = new ControllerRMIClient(); //"127.0.0.1"
 			
-			Thread.sleep(1000);
-
-			machin.up();
+			//Thread.sleep(1000);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {

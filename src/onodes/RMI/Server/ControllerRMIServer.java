@@ -1,7 +1,5 @@
 package onodes.RMI.Server;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.rmi.RemoteException;
 
 import onodes.RMI.ControllerRMI;
@@ -19,24 +17,5 @@ public class ControllerRMIServer extends
 		super();
 		this.model = new ModelRMIServer();
 		// this.view = new VRMIServer();
-	}
-
-	public void up() {
-		// model.up();
-
-		Class toto;
-		try {
-		toto = Class.forName("onodes.RMI.Server.ModelRMIServer");
-
-		String methodName = "upa"; // ds ton cas
-		Class[] paramClasses = { String.class }; // un seul parametre de
-													// type String
-		Method method = toto.getMethod(methodName, paramClasses);
-		
-		Object[] params = {"test"};
-		method.invoke(model, params);
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e ) {
-			e.getMessage();
-		}
 	}
 }

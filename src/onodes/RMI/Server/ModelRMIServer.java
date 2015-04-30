@@ -87,14 +87,4 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, Mod
 		this.addClient(client);
 		System.out.println("ModelRMIServer UID="+serialVersionUID+" : New client registered : "+client.getInfoClient());
 	}
-	
-	public void upa(String test) {
-		System.out.println("executee !");
-		try {
-			System.out.println(clients.get(0).getInfoClient());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
