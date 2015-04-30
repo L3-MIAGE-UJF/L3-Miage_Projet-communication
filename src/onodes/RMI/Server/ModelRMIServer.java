@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
 
-public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote {
+public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
+		UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote {
 	/**
 	 * 
 	 */
@@ -23,17 +24,18 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, Mod
 	 */
 	// TODO Integrer liste Client Hasmap plus optimisé
 	private volatile ArrayList<ModelRMIClientRemote> clients;
-	
+
 	public ModelRMIServer() throws RemoteException {
 		super();
 		launchServer("127.0.0.1");
-		//InetAddress.getLocalHost().getHostAddress();
+		// InetAddress.getLocalHost().getHostAddress();
 	}
-	
+
 	public ModelRMIServer(String ip) throws RemoteException {
 		super();
 		launchServer(ip);
 	}
+
 	/**
 	 * 
 	 * @param ip
@@ -41,23 +43,29 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, Mod
 	private void launchServer(String ip) {
 		try {
 			this.clients = new ArrayList<ModelRMIClientRemote>();
-			
-			System.out.println("=================================================================");
-			System.out.println("ModelRMIServer UID="+serialVersionUID+" : Création du serveur RMI");
+
+			System.out
+					.println("=================================================================");
+			System.out.println("ModelRMIServer UID=" + serialVersionUID
+					+ " : Création du serveur RMI");
 			LocateRegistry.createRegistry(1099);
 
-			System.out.println("ModelRMIServer UID="+serialVersionUID+" : Mise en place du Security Manager ...");
+			System.out.println("ModelRMIServer UID=" + serialVersionUID
+					+ " : Mise en place du Security Manager ...");
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}
 
-			String url = "rmi://"+ip+"/testRMIserver";
-			System.out.println("ModelRMIServer UID="+serialVersionUID+" : Enregistrement de l'objet avec l'url : " + url);
+			String url = "rmi://" + ip + "/testRMIserver";
+			System.out.println("ModelRMIServer UID=" + serialVersionUID
+					+ " : Enregistrement de l'objet avec l'url : " + url);
 
 			Naming.rebind(url, this);
 
-			System.out.println("ModelRMIServer UID="+serialVersionUID+" : Serveur lancé");
-			System.out.println("=================================================================");
+			System.out.println("ModelRMIServer UID=" + serialVersionUID
+					+ " : Serveur lancé");
+			System.out
+					.println("=================================================================");
 		} catch (RemoteException e) {
 			System.err.println(e.getMessage());
 		} catch (MalformedURLException e) {
@@ -68,23 +76,25 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, Mod
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void addClient(ModelRMIClientRemote client) {
 		this.clients.add(client);
 	}
-	
+
 	private ModelRMIClientRemote getClient(int num) {
 		return clients.get(num);
 	}
-	
+
 	@Override
 	public String getInfoServer() throws RemoteException {
-		return "Retour ModelRMIServer UID="+serialVersionUID;
+		return "Retour ModelRMIServer UID=" + serialVersionUID;
 	}
 
 	@Override
-	public void registerClient(ModelRMIClientRemote client) throws RemoteException {
+	public void registerClient(ModelRMIClientRemote client)
+			throws RemoteException {
 		this.addClient(client);
-		System.out.println("ModelRMIServer UID="+serialVersionUID+" : New client registered : "+client.getInfoClient());
+		System.out.println("ModelRMIServer UID=" + serialVersionUID
+				+ " : New client registered : " + client.getInfoClient());
 	}
 }

@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 
 import onodes.RMI.Client.ControllerRMIClient;
 import onodes.RMI.Server.ControllerRMIServer;
-import pnodes.monapplirmiclient.ControllerMonAppRMIClient;
-import pnodes.monapplirmiclient.ModelMonAppRMIClient;
+import pnodes.monappli.rmiclient.ControllerMonAppRMIClient;
+import pnodes.monappli.rmiclient.ModelMonAppRMIClient;
+import pnodes.monappli.rmiserver.ControllerMonAppRMIServer;
+import pnodes.monappli.rmiserver.ModelMonAppRMIServer;
 
 /**
 *
@@ -21,10 +23,19 @@ public final class CoreApp {
 	 */
 	public static void mainApp(String[] args) {
 		//TEST RMI CLIENT
-		try {
+		/*
+		 try {
+		 
+			
+			ControllerMonAppRMIServer machin1 = new ControllerMonAppRMIServer(new ModelMonAppRMIServer(), null);
+			
+			Thread.sleep(100);
+			
 			ControllerMonAppRMIClient machin = new ControllerMonAppRMIClient(new ModelMonAppRMIClient(), null);
 			
 			Thread.sleep(100);
+			
+			machin.test();
 			
 			//ControllerRMIClient test = new ControllerRMIClient(); //"127.0.0.1"
 			
@@ -37,8 +48,9 @@ public final class CoreApp {
 			e.printStackTrace();
 		}
 		
-		
+	*/	
 	}
+	
 
 	/*
 	 * Main functions of the application
