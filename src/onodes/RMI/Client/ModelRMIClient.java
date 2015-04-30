@@ -17,7 +17,7 @@ import onodes.RMI.Server.ModelRMIServerRemote;
 * @author groupe1
 *
 */
-public class ModelRMIClient extends UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
+public abstract class ModelRMIClient<MR extends ModelRMIClientRemote> extends UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
 
 	/**
 	 * 
@@ -63,9 +63,8 @@ public class ModelRMIClient extends UnicastRemoteObject implements ModelRMI, Mod
 				String s = ((ModelRMIServerRemote) r).getInfoServer();
 				System.out.println("ModelRMIClient UID="+serialVersionUID+" : chaine renvoyee = " + s);
 				
-				ModelRMIServerRemote serv = (ModelRMIServerRemote) r;
-				
-				this.regOnServer(serv);
+				MR serv = (MR) r;
+				//this.regOnServer(serv);
 			}
 			else {
 				System.out.println("ModelRMIClient UID="+serialVersionUID+" : Instance incorrecte");
@@ -91,13 +90,13 @@ public class ModelRMIClient extends UnicastRemoteObject implements ModelRMI, Mod
 
 	/**
 	 * 
-	 * @param remoteServer
+	 * @param serv
 	 */
-	public void regOnServer(ModelRMIServerRemote remoteServer) {
+	/*public void regOnServer(MR serv) {
 		try {
-			remoteServer.registerClient(this);
+			serv.registerClient(this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

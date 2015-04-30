@@ -10,6 +10,6 @@ import onodes.View;
 * @author groupe1
 *
 */
-public interface ViewRMI extends View, Remote {
+public abstract class ViewRMI implements View, Remote {
 
 }

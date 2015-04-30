@@ -3,8 +3,6 @@ package onodes.RMI.Client;
 import java.rmi.RemoteException;
 
 import onodes.RMI.ControllerRMI;
-import onodes.RMI.Server.ModelRMIServer;
-import onodes.RMI.Server.ViewRMIServer;
 
 /*
  * Besoin de conserver la même architecture de package dans Le serveur comme le client
@@ -17,25 +15,34 @@ import onodes.RMI.Server.ViewRMIServer;
 * @author groupe1
 *
 */
-public class ControllerRMIClient extends ControllerRMI<ModelRMIClient, ViewRMIClient> {
-	/**
-	 * Default local 127.0.0.1
-	 * @throws RemoteException
-	 */
+public abstract class ControllerRMIClient<M extends ModelRMIClient, V extends ViewRMIClient> extends ControllerRMI<M, V> {
+	
+	public ControllerRMIClient() throws RemoteException {
+		super();
+	}
+	
+	public ControllerRMIClient(M model, V view) throws RemoteException {
+		super(model, view);
+	}
+	
+
+/*
 	public ControllerRMIClient() throws RemoteException {
 		super();
 		this.model = new ModelRMIClient();
 		//this.view = new VRMIServer();
 	}
 	
-	/**
-	 * 
-	 * @param ip
-	 * @throws RemoteException
-	 */
+
 	public ControllerRMIClient(String ip) throws RemoteException {
 		super();
 		this.model = new ModelRMIClient(ip);
 		//this.view = new VRMIServer();
 	}
+
+	public ControllerRMIClient(ModelRMIClient model, ViewRMIClient view) {
+		super(model, view);
+		// TODO Auto-generated constructor stub
+	}
+	*/
 }

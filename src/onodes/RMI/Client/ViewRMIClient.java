@@ -2,6 +2,6 @@ package onodes.RMI.Client;
 
 import onodes.RMI.ViewRMI;
 
-public interface ViewRMIClient extends ViewRMI {
+public abstract class ViewRMIClient extends ViewRMI {
 
 }

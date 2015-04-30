@@ -10,4 +10,14 @@ package onodes;
 public abstract class Controller<M extends Model, V extends View> {
 	protected M model;
 	protected V view;
+	
+	public Controller() {
+		this.model=null;
+		this.view=null;
+	}
+	
+	public Controller(M model, V view) {
+		this.model=model;
+		this.view=view;
+	}
 }

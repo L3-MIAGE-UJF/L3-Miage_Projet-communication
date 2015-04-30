@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import onodes.RMI.Client.ControllerRMIClient;
 import onodes.RMI.Server.ControllerRMIServer;
+import pnodes.monapplirmiclient.ControllerMonAppRMIClient;
+import pnodes.monapplirmiclient.ModelMonAppRMIClient;
 
 /**
 *
@@ -20,16 +22,17 @@ public final class CoreApp {
 	public static void mainApp(String[] args) {
 		//TEST RMI CLIENT
 		try {
-			ControllerRMIServer machin = new ControllerRMIServer();
+			ControllerMonAppRMIClient machin = new ControllerMonAppRMIClient(new ModelMonAppRMIClient(), null);
 			
 			Thread.sleep(100);
 			
-			ControllerRMIClient test = new ControllerRMIClient(); //"127.0.0.1"
+			//ControllerRMIClient test = new ControllerRMIClient(); //"127.0.0.1"
 			
 			//Thread.sleep(1000);
-		} catch (RemoteException e) {
-			e.printStackTrace();
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
