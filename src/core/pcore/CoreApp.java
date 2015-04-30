@@ -2,7 +2,8 @@ package core.pcore;
 
 import java.rmi.RemoteException;
 
-import controller.CRMIClient;
+import onodes.RMI.Client.ControllerRMIClient;
+import onodes.RMI.Server.ControllerRMIServer;
 
 /**
 *
@@ -19,10 +20,22 @@ public final class CoreApp {
 	public static void mainApp(String[] args) {
 		//TEST RMI CLIENT
 		try {
-			CRMIClient test = new CRMIClient("127.0.0.1");
+			ControllerRMIServer machin = new ControllerRMIServer();
+			
+			Thread.sleep(100);
+			
+			ControllerRMIClient test = new ControllerRMIClient(); //"127.0.0.1"
+			
+			Thread.sleep(1000);
+
+			machin.up();
 		} catch (RemoteException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 	}
 

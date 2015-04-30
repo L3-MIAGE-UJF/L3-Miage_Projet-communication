@@ -1,7 +1,5 @@
-package controller;
+package onodes;
 
-import view.View;
-import model.Model;
 
 /**
 *

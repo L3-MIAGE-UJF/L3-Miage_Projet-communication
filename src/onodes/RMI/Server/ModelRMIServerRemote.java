@@ -1,7 +1,9 @@
-package model;
+package onodes.RMI.Server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import onodes.RMI.Client.ModelRMIClientRemote;
 
 /*
  * Besoin de conserver la même architecture de package dans Le serveur comme le client
@@ -14,7 +16,7 @@ import java.rmi.RemoteException;
 * @author groupe1
 *
 */
-public interface MRMIServerRemote extends Remote {
+public interface ModelRMIServerRemote extends Remote {
 	/**
 	 * 
 	 * @return
@@ -27,5 +29,5 @@ public interface MRMIServerRemote extends Remote {
 	 * @param client
 	 * @throws RemoteException
 	 */
-	void registerClient(MRMIClientRemote client) throws RemoteException;
+	void registerClient(ModelRMIClientRemote client) throws RemoteException;
 }

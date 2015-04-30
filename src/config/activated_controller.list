@@ -14,4 +14,4 @@
 # le package pmodel ils doivent être donc précédés   #
 # de ce dernier.                                     #
 ######################################################
-CRMIServer
+#onodes.RMI.Server.ControllerRMIServer

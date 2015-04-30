@@ -1,4 +1,4 @@
-package model;
+package onodes.RMI.Server;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -9,7 +9,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 import java.util.ArrayList;
 
-public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerRemote {
+import onodes.RMI.ModelRMI;
+import onodes.RMI.Client.ModelRMIClientRemote;
+
+public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote {
 	/**
 	 * 
 	 */
@@ -19,15 +22,15 @@ public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerR
 	 * 
 	 */
 	// TODO Integrer liste Client Hasmap plus optimisé
-	private volatile ArrayList<MRMIClientRemote> clients;
+	private volatile ArrayList<ModelRMIClientRemote> clients;
 	
-	public MRMIServer() throws RemoteException {
+	public ModelRMIServer() throws RemoteException {
 		super();
 		launchServer("127.0.0.1");
 		//InetAddress.getLocalHost().getHostAddress();
 	}
 	
-	public MRMIServer(String ip) throws RemoteException {
+	public ModelRMIServer(String ip) throws RemoteException {
 		super();
 		launchServer(ip);
 	}
@@ -37,6 +40,8 @@ public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerR
 	 */
 	private void launchServer(String ip) {
 		try {
+			this.clients = new ArrayList<ModelRMIClientRemote>();
+			
 			System.out.println("=================================================================");
 			System.out.println("ModelRMIServer UID="+serialVersionUID+" : Création du serveur RMI");
 			LocateRegistry.createRegistry(1099);
@@ -64,11 +69,11 @@ public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerR
 		}
 	}
 	
-	private void addClient(MRMIClientRemote client) {
-		clients.add(client);
+	private void addClient(ModelRMIClientRemote client) {
+		this.clients.add(client);
 	}
 	
-	private MRMIClientRemote getClient(int num) {
+	private ModelRMIClientRemote getClient(int num) {
 		return clients.get(num);
 	}
 	
@@ -78,8 +83,18 @@ public class MRMIServer extends UnicastRemoteObject implements MRMI, MRMIServerR
 	}
 
 	@Override
-	public void registerClient(MRMIClientRemote client) throws RemoteException {
-		addClient(client);
+	public void registerClient(ModelRMIClientRemote client) throws RemoteException {
+		this.addClient(client);
 		System.out.println("ModelRMIServer UID="+serialVersionUID+" : New client registered : "+client.getInfoClient());
+	}
+	
+	public void upa(String test) {
+		System.out.println("executee !");
+		try {
+			System.out.println(clients.get(0).getInfoClient());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

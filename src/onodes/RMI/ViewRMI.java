@@ -1,6 +1,8 @@
-package view;
+package onodes.RMI;
 
 import java.rmi.Remote;
+
+import onodes.View;
 
 /**
 *
@@ -8,6 +10,6 @@ import java.rmi.Remote;
 * @author groupe1
 *
 */
-public interface VRMI extends View, Remote {
+public interface ViewRMI extends View, Remote {
 
 }

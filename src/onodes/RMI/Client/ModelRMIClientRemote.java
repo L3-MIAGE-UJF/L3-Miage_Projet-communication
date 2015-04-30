@@ -1,4 +1,4 @@
-package model;
+package onodes.RMI.Client;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 * @author groupe1
 *
 */
-public interface MRMIClientRemote extends Remote {
+public interface ModelRMIClientRemote extends Remote {
 	/**
 	 * 
 	 * @return

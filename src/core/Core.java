@@ -118,7 +118,7 @@ public class Core {
 				line = line.trim();
 				matcher = regPatCom.matcher(line);
 				if (!matcher.matches() && !line.isEmpty()) {
-					setListController.add("controller."+line);
+					setListController.add(line); //"onodes."+
 				}
 		    }
 		} catch (FileNotFoundException e) {

@@ -1,8 +1,11 @@
-package view;
+package onodes.RMI.Server;
 
 import java.rmi.RemoteException;
 
-public interface VRMIServer extends VRMI {
+import onodes.RMI.ViewRMI;
+import onodes.RMI.Client.ViewRMIClient;
+
+public interface ViewRMIServer extends ViewRMI {
 	/**
 	 * 
 	 * @return
@@ -15,5 +18,5 @@ public interface VRMIServer extends VRMI {
 	 * @param cl
 	 * @throws RemoteException
 	 */
-	void regClient(VRMIClient cl) throws RemoteException;
+	void regClient(ViewRMIClient cl) throws RemoteException;
 }

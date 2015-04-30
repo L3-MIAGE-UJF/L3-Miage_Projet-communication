@@ -1,4 +1,4 @@
-package model;
+package onodes;
 
 /**
 *
@@ -6,6 +6,6 @@ package model;
 * @author groupe1
 *
 */
-public interface Model {
+public interface View {
 
 }
