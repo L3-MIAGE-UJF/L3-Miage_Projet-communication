@@ -72,7 +72,7 @@ public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
 						+ " : chaine renvoyee = " + s);
 
 				this.serv = (MR) r;
-				// this.regOnServer(serv);
+		
 			} else {
 				System.out.println("ModelRMIClient UID=" + serialVersionUID
 						+ " : Instance incorrecte");
@@ -98,10 +98,9 @@ public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
 		return "Retour ModelRMIClient UID=" + serialVersionUID;
 	}
 
-	/**
-	 * 
-	 * @param serv
-	 */
+	public MR getMRMIServerRemote() {
+		return serv;
+	}
 	/*
 	 * public void regOnServer(MR serv) { try { serv.registerClient(this); }
 	 * catch (RemoteException e) { e.printStackTrace(); } }

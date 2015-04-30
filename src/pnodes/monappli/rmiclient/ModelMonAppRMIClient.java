@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import onodes.RMI.Client.ModelRMIClient;
 import pnodes.monappli.rmiserver.ModelMonAppRMIServerRemote;
 
-//public abstract class ModelRMIClient<MR extends ModelRMIClientRemote> extends UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote 
 public class ModelMonAppRMIClient extends
 		ModelRMIClient<ModelMonAppRMIServerRemote> implements
 		ModelMonAppRMIClientRemote {
@@ -25,12 +24,12 @@ public class ModelMonAppRMIClient extends
 
 	@Override
 	public String mamethodealacon() {
-try {
-	System.out.println(this.serv.methodeserveur());
-} catch (RemoteException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+		try {
+			System.out.println(this.serv.methodeserveur());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "Coucou je suis le client";
 	}
 

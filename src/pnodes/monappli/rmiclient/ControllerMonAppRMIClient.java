@@ -3,13 +3,13 @@ package pnodes.monappli.rmiclient;
 import java.rmi.RemoteException;
 
 import onodes.RMI.Client.ControllerRMIClient;
+import pnodes.monappli.rmiserver.ModelMonAppRMIServerRemote;
 
 public class ControllerMonAppRMIClient extends
-		ControllerRMIClient<ModelMonAppRMIClient, ViewMonAppRMIClient> {
+		ControllerRMIClient<ModelMonAppRMIServerRemote, ModelMonAppRMIClient, ViewMonAppRMIClient> {
 
 	public ControllerMonAppRMIClient() throws RemoteException {
-		this.model = new ModelMonAppRMIClient();
-		this.view = new ViewMonAppRMIClient();
+		super(new ModelMonAppRMIClient(), new ViewMonAppRMIClient());
 	}
 
 	public ControllerMonAppRMIClient(ModelMonAppRMIClient model,

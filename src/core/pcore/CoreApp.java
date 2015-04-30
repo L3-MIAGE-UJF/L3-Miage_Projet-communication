@@ -2,12 +2,9 @@ package core.pcore;
 
 import java.rmi.RemoteException;
 
-import onodes.RMI.Client.ControllerRMIClient;
-import onodes.RMI.Server.ControllerRMIServer;
+import pnodes.monappli.ControllerMonApp;
 import pnodes.monappli.rmiclient.ControllerMonAppRMIClient;
-import pnodes.monappli.rmiclient.ModelMonAppRMIClient;
 import pnodes.monappli.rmiserver.ControllerMonAppRMIServer;
-import pnodes.monappli.rmiserver.ModelMonAppRMIServer;
 
 /**
 *
@@ -22,9 +19,21 @@ public final class CoreApp {
 	 * @param args
 	 */
 	public static void mainApp(String[] args) {
-
+		try {
+			ControllerMonAppRMIServer test = new ControllerMonAppRMIServer();
+			
+			Thread.sleep(100);
+			ControllerMonApp test1 = new ControllerMonApp();
+			
+			//ControllerMonAppRMIClient test2 = new ControllerMonAppRMIClient();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
 
 	/*
 	 * Main functions of the application

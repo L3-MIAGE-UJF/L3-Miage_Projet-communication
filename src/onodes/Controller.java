@@ -1,5 +1,7 @@
 package onodes;
 
+import onodes.RMI.Server.ModelRMIServer;
+
 
 /**
 *

@@ -1,6 +1,6 @@
 package pnodes.monappli;
 
-import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,6 +24,7 @@ public class ViewMonApp extends JFrame implements View, Observer {
 	
 	private javax.swing.JPanel panel;
 	private javax.swing.JButton bouton;
+	private javax.swing.JButton boutonRemote;
 	private javax.swing.JLabel textTitre;
 
 	public ViewMonApp(ControllerMonApp controller, ModelMonApp model) {
@@ -43,9 +44,11 @@ public class ViewMonApp extends JFrame implements View, Observer {
 
 		panel = new JPanel();
 		bouton = new JButton("Mon bouton");
+		boutonRemote = new JButton("Remote");
 		textTitre = new JLabel(model.getTitre());
 		
 		panel.add(bouton);
+		panel.add(boutonRemote);
 		panel.add(textTitre);
 
 		this.setContentPane(panel);
@@ -57,6 +60,12 @@ public class ViewMonApp extends JFrame implements View, Observer {
             }
         });
  
+		boutonRemote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	boutonRemoteActionPerformed(evt);
+            }
+        });
+		
 		this.setVisible(true);
 	}
 	
@@ -64,6 +73,10 @@ public class ViewMonApp extends JFrame implements View, Observer {
 		this.controller.actionBouton();
 	}
 
+	private void boutonRemoteActionPerformed(java.awt.event.ActionEvent evt) {
+		this.controller.actionBoutonRemote();
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub

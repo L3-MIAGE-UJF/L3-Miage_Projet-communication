@@ -3,6 +3,7 @@ package pnodes.monappli.rmiserver;
 import java.rmi.RemoteException;
 
 import onodes.RMI.Server.ControllerRMIServer;
+import onodes.RMI.Server.ModelRMIServer;
 
 /**
  *
@@ -23,5 +24,4 @@ public class ControllerMonAppRMIServer extends
 			ViewMonAppRMIServer view) throws RemoteException {
 		super(model, view);
 	}
-
 }

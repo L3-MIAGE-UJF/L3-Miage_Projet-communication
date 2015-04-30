@@ -15,4 +15,4 @@
 # de ce dernier.                                     #
 ######################################################
 #onodes.RMI.Server.ControllerRMIServer
-pnodes.monappli.ControllerMonApp
+#pnodes.monappli.ControllerMonApp
