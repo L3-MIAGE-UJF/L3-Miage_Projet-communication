@@ -16,8 +16,4 @@ public class ControllerMonAppRMIClient extends
 			ViewMonAppRMIClient view) throws RemoteException {
 		super(model, view);
 	}
-
-	public void test() {
-		System.out.println(model.mamethodealacon());
-	}
 }

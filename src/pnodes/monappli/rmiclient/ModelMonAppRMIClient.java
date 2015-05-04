@@ -23,14 +23,14 @@ public class ModelMonAppRMIClient extends
 	}
 
 	@Override
-	public String mamethodealacon() {
+	public void mamethodealacon() {
 		try {
 			System.out.println(this.serv.methodeserveur());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "Coucou je suis le client";
+		System.out.println("Coucou je suis le client");
 	}
 
 }

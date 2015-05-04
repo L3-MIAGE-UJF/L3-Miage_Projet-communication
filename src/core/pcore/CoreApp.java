@@ -3,7 +3,6 @@ package core.pcore;
 import java.rmi.RemoteException;
 
 import pnodes.monappli.ControllerMonApp;
-import pnodes.monappli.rmiclient.ControllerMonAppRMIClient;
 import pnodes.monappli.rmiserver.ControllerMonAppRMIServer;
 
 /**
@@ -19,6 +18,7 @@ public final class CoreApp {
 	 * @param args
 	 */
 	public static void mainApp(String[] args) {
+		
 		try {
 			ControllerMonAppRMIServer test = new ControllerMonAppRMIServer();
 			
@@ -33,6 +33,7 @@ public final class CoreApp {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/*

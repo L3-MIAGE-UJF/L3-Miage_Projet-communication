@@ -1,5 +1,7 @@
 package onodes.RMI.Server;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
 
-public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
-		UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote {
+public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends ModelRMIClientRemote>
+		extends UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote<MC> {
 	/**
 	 * 
 	 */
@@ -22,9 +24,9 @@ public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
 	/**
 	 * 
 	 */
-	// TODO Integrer liste Client Hasmap plus optimisé
-	private volatile ArrayList<ModelRMIClientRemote> clients;
-
+	// TODO Integrer liste Client plus optimisé
+	private volatile ArrayList<MC> clients;
+	
 	public ModelRMIServer() throws RemoteException {
 		super();
 		launchServer("127.0.0.1");
@@ -42,7 +44,7 @@ public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
 	 */
 	private void launchServer(String ip) {
 		try {
-			this.clients = new ArrayList<ModelRMIClientRemote>();
+			this.clients = new ArrayList<MC>();
 
 			System.out
 					.println("=================================================================");
@@ -77,11 +79,15 @@ public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
 		}
 	}
 
-	private void addClient(ModelRMIClientRemote client) {
+	protected void addClient(MC client) {
 		this.clients.add(client);
 	}
 
-	private ModelRMIClientRemote getClient(int num) {
+	protected ArrayList<MC> getAllClients() {
+		return this.clients;
+	}
+
+	protected ModelRMIClientRemote getClient(int num) {
 		return clients.get(num);
 	}
 
@@ -91,10 +97,41 @@ public class ModelRMIServer<MR extends ModelRMIServerRemote> extends
 	}
 
 	@Override
-	public void registerClient(ModelRMIClientRemote client)
-			throws RemoteException {
-		this.addClient(client);
+	public void registerClient(MC client) throws RemoteException {
+		addClient(client);
 		System.out.println("ModelRMIServer UID=" + serialVersionUID
 				+ " : New client registered : " + client.getInfoClient());
+		actionOnClientRegistration(client);
+	}
+
+	protected abstract void actionOnClientRegistration(MC client);
+
+	protected void callMethodOnAllClients(String methodName, Class[] args) {
+		System.out.println("");
+		MC currentClient = null;
+		Class<? extends ModelRMIClientRemote> clientClass = currentClient.getClass();
+		
+		Method method = null;
+		
+		try {
+			method = clientClass.getDeclaredMethod(methodName, args);
+		} catch (NoSuchMethodException e) {
+			e.getMessage();
+		} catch	(SecurityException e) {
+			e.getMessage();
+		}
+		
+		for (int i=0; i<clients.size(); i++) {
+			currentClient=clients.get(i);
+				try {
+					method.invoke(currentClient, args);
+				} catch (IllegalAccessException e) {
+					e.getMessage();
+				} catch (IllegalArgumentException e) {
+					e.getMessage();
+				} catch (InvocationTargetException e) {
+					e.getMessage();
+				}
+		}
 	}
 }

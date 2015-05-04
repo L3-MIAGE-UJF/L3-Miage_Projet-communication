@@ -2,17 +2,9 @@
 # Liste des controleurs a activer                    #
 ######################################################
 #                                                    #
-# Il est nécessaire de respecter le format suivant : # 
-# > Exemple pour des controleurs déja définis :      #
-# modele_x                                           #
-#                                                    # 
-# > Exemple pour des controleurs définis par         #
-# le dev Ops:                                        #
-# pmodel.mon_modele_x                                #
-#                                                    #
 # Les controleurs developpés doivent se trouver dans #
-# le package pmodel ils doivent être donc précédés   #
-# de ce dernier.                                     #
+# leur package respectif dans pnodes                 #
 ######################################################
 #onodes.RMI.Server.ControllerRMIServer
+#pnodes.monappli.rmiserver.Controller.MonAppRMIServer
 #pnodes.monappli.ControllerMonApp
