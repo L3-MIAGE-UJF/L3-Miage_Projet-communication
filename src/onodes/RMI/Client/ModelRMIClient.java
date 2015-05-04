@@ -78,6 +78,8 @@ public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
 						+ " : Instance incorrecte");
 			}
 
+			this.serv.registerClient(this);
+			
 			System.out.println("ModelRMIClient UID=" + serialVersionUID
 					+ " : Client Lancé");
 			System.out

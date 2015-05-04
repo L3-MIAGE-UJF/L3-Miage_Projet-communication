@@ -10,6 +10,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
@@ -106,15 +107,14 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 
 	protected abstract void actionOnClientRegistration(MC client);
 
-	protected void callMethodOnAllClients(String methodName, Class[] args) {
-		System.out.println("");
+	protected void callMethodOnAllClients(Class<? extends ModelRMIClientRemote> clientClass, String methodName, Class[] args) {
+		System.out.println("call to all client");
 		MC currentClient = null;
-		Class<? extends ModelRMIClientRemote> clientClass = currentClient.getClass();
-		
+
 		Method method = null;
 		
 		try {
-			method = clientClass.getDeclaredMethod(methodName, args);
+			method = clientClass.getMethod(methodName, args);
 		} catch (NoSuchMethodException e) {
 			e.getMessage();
 		} catch	(SecurityException e) {
@@ -124,6 +124,18 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 		for (int i=0; i<clients.size(); i++) {
 			currentClient=clients.get(i);
 				try {
+					if (method==null) {
+						System.out.println("echec et mat method");
+					}
+					
+					if (currentClient==null) {
+						System.out.println("echec et mat client");
+					}
+					
+					if (args==null) {
+						System.out.println("echec et mat args");
+					}
+					
 					method.invoke(currentClient, args);
 				} catch (IllegalAccessException e) {
 					e.getMessage();

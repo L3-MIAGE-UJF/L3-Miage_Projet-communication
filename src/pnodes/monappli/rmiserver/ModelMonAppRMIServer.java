@@ -1,5 +1,6 @@
 package pnodes.monappli.rmiserver;
 
+import java.lang.reflect.Method;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -37,6 +38,6 @@ public class ModelMonAppRMIServer extends
 		/*
 		 * Complétez le code ici
 		 */
-		this.callMethodOnAllClients("mamethodealacon", new Class[] {});
+		this.callMethodOnAllClients(client.getClass() ,"mamethodealacon", new Class[] {});
 	}
 }
