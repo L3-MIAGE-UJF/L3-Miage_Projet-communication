@@ -2,6 +2,7 @@ package onodes.RMI.Server;
 
 import java.rmi.RemoteException;
 
+import onodes.Controller;
 import onodes.RMI.ControllerRMI;
 import pnodes.monAppServer.ControllerMonAppServer;
 
@@ -13,9 +14,9 @@ import pnodes.monAppServer.ControllerMonAppServer;
  *
  */
 
-public class ControllerRMIServer extends ControllerRMI<ModelRMIServer, ViewRMIServer> {
+public class ControllerRMIServer<C extends Controller> extends ControllerRMI<ModelRMIServer, ViewRMIServer> {
 
-	public ControllerRMIServer(ControllerMonAppServer cappserv) throws RemoteException {
+	public ControllerRMIServer(C cappserv) throws RemoteException {
 		super();
 		model=new ModelRMIServer(cappserv);
 		view=new ViewRMIServer();

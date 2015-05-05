@@ -13,7 +13,7 @@ public class ModelMonAppClient extends Observable implements Model {
 	private ControllerRMIClient cRMIc;
 	
 	public ModelMonAppClient(ControllerMonAppClient controllerAppClient) throws RemoteException {
-		cRMIc=new ControllerRMIClient(controllerAppClient);
+		cRMIc=new ControllerRMIClient<ControllerMonAppClient>(controllerAppClient);
 	}
 
 	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {

@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 
-import onodes.AppuRMI.ControllerAppuRMI;
+import onodes.Controller;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Server.ModelRMIServerRemote;
 import pnodes.monAppClient.ControllerMonAppClient;
@@ -23,11 +23,11 @@ import pnodes.monAppServer.ControllerMonAppServer;
  * @author groupe1
  *
  */
-public class ModelRMIClient extends
+public class ModelRMIClient<C extends Controller> extends
 		UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
 
 	protected ModelRMIServerRemote modelRMIServerR;
-	private ControllerMonAppClient controllerAppClient;
+	private C controllerAppClient;
 	
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class ModelRMIClient extends
 	 * 
 	 * @throws RemoteException
 	 */
-	public ModelRMIClient(ControllerMonAppClient controllerAppClient) throws RemoteException {
+	public ModelRMIClient(C controllerAppClient) throws RemoteException {
 		super();
 		this.controllerAppClient=controllerAppClient;
 		launchClient("127.0.0.1");
@@ -49,7 +49,7 @@ public class ModelRMIClient extends
 	 * @param ip
 	 * @throws RemoteException
 	 */
-	public ModelRMIClient(ControllerMonAppClient controllerAppClient, String ip) throws RemoteException {
+	public ModelRMIClient(C controllerAppClient, String ip) throws RemoteException {
 		super();
 		// TODO Match regexp of ip addr
 		this.controllerAppClient=controllerAppClient;

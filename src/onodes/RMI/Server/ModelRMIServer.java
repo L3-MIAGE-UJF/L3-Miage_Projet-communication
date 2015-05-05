@@ -11,11 +11,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 import java.util.ArrayList;
 
+import onodes.Controller;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
 import pnodes.monAppServer.ControllerMonAppServer;
 
-public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
+public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject implements ModelRMI,
 		ModelRMIServerRemote<ModelRMIClientRemote> {
 	/**
 	 * 
@@ -28,9 +29,9 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
 	// TODO Integrer liste Client plus optimisé
 	private volatile ArrayList<ModelRMIClientRemote> clients;
 
-	private ControllerMonAppServer controllerAppServer;
+	private C controllerAppServer;
 
-	public ModelRMIServer(ControllerMonAppServer controllerrmiserv)
+	public ModelRMIServer(C controllerrmiserv)
 			throws RemoteException {
 		super();
 		this.controllerAppServer = controllerrmiserv;
