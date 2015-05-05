@@ -5,6 +5,15 @@
 # Les controleurs developpés doivent se trouver dans #
 # leur package respectif dans pnodes                 #
 ######################################################
-#onodes.RMI.Server.ControllerRMIServer
-#pnodes.monappli.rmiserver.Controller.MonAppRMIServer
-#pnodes.monappli.ControllerMonApp
+
+#Application RMI Server
+#pnodes.monAppServer.ControllerMonAppServer
+
+#Application RMI Client
+#pnodes.monAppClient.ControllerMonAppClient
+
+#Application Chat Server
+#pnodes.AppChatServer.ControllerAppChatServer
+
+#Application Chat Client
+#pnodes.AppChatClient.ControllerAppChatClient

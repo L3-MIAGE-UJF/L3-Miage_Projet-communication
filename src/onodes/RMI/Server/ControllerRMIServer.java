@@ -15,23 +15,44 @@ import onodes.RMI.ControllerRMI;
 
 public class ControllerRMIServer<C extends Controller> extends ControllerRMI<ModelRMIServer, ViewRMIServer> {
 
+	/**
+	 * @param cappserv
+	 * @throws RemoteException
+	 */
 	public ControllerRMIServer(C cappserv) throws RemoteException {
 		super();
 		model=new ModelRMIServer(cappserv);
 		view=new ViewRMIServer();
 	}
 	
+	/**
+	 * @param cappserv
+	 * @param ip
+	 * @throws RemoteException
+	 */
 	public ControllerRMIServer(C cappserv, String ip) throws RemoteException {
 		super();
 		model=new ModelRMIServer(cappserv, ip);
 		view=new ViewRMIServer();
 	}
 
+	/**
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 */
 	public void invokeMethodOnAllControllerAppClient(String methodName,
 			Class[] cArgs, Object[] oArgs) {
 		model.invokeMethodOnAllControllerAppClient(methodName, cArgs, oArgs);
 	}
 	
+	/**
+	 * @param idClient
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 * @return
+	 */
 	public Object invokeMethodOnControllerAppClient (int idClient, String methodName,
 			Class[] cArgs, Object[] oArgs) {
 		return model.invokeMethodOnControllerAppClient(idClient, methodName, cArgs, oArgs);

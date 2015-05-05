@@ -15,13 +15,20 @@ import java.rmi.RemoteException;
 *
 */
 public interface ModelRMIClientRemote extends Remote {
+
 	/**
-	 * 
 	 * @return
 	 * @throws RemoteException
 	 */
 	public String getInfoClient() throws RemoteException;
 
+	/**
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 * @return
+	 * @throws RemoteException
+	 */
 	public Object invokeMethodOnControllerAppClient(String methodName,
 			Class[] cArgs, Object[] oArgs) throws RemoteException;
 }

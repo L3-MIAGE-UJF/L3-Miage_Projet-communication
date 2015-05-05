@@ -33,8 +33,15 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 	// TODO Integrer liste Client plus optimisé
 	private volatile ArrayList<ModelRMIClientRemote> clients;
 
+	/**
+	 * 
+	 */
 	private C controllerAppServer;
 
+	/**
+	 * @param controllerrmiserv
+	 * @throws RemoteException
+	 */
 	public ModelRMIServer(C controllerrmiserv)
 			throws RemoteException {
 		super();
@@ -43,6 +50,9 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		// InetAddress.getLocalHost().getHostAddress();
 	}
 
+	/**
+	 * @return
+	 */
 	private String getFirstNonLocalAdress() {
 		String ret = null;
 	    Enumeration en;
@@ -65,12 +75,20 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 	    return ret;
 	}
 
+	/**
+	 * @param controllerrmiserv
+	 * @param ip
+	 * @throws RemoteException
+	 */
 	public ModelRMIServer(C controllerrmiserv, String ip) throws RemoteException {
 		super();
 		this.controllerAppServer = controllerrmiserv;
 		launchServer(ip);
 	}
 
+	/**
+	 * @param ip
+	 */
 	private void launchServer(String ip) {
 		try {
 			this.clients = new ArrayList<ModelRMIClientRemote>();
@@ -145,6 +163,11 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		return ret;
 	}
 
+	/**
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 */
 	public void invokeMethodOnAllControllerAppClient(String methodName,
 			Class[] cArgs, Object[] oArgs) {
 		ModelRMIClientRemote currentClient;
@@ -161,6 +184,13 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		}
 	}
 
+	/**
+	 * @param idClient
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 * @return
+	 */
 	public Object invokeMethodOnControllerAppClient(int idClient,
 			String methodName, Class[] cArgs, Object[] oArgs) {
 		Object ret = null;
@@ -184,6 +214,9 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		return "Retour ModelRMIServer UID=" + serialVersionUID;
 	}
 
+	/**
+	 * @param client
+	 */
 	protected void addClient(ModelRMIClientRemote client) {
 		this.clients.add(client);
 	}

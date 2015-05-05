@@ -21,9 +21,11 @@ import onodes.RMI.ServerGeneric.ModelRMIServerGenericRemote;
 public abstract class ModelRMIClientGeneric<MR extends ModelRMIServerGenericRemote> extends
 		UnicastRemoteObject implements ModelRMI, ModelRMIClientGenericRemote {
 
-	
-	//TODO DEGEU
+	/**
+	 * 
+	 */
 	protected MR serv;
+	
 	/**
 	 * 
 	 */
@@ -100,11 +102,10 @@ public abstract class ModelRMIClientGeneric<MR extends ModelRMIServerGenericRemo
 		return "Retour ModelRMIClient UID=" + serialVersionUID;
 	}
 
+	/**
+	 * @return
+	 */
 	public MR getMRMIServerRemote() {
 		return serv;
 	}
-	/*
-	 * public void regOnServer(MR serv) { try { serv.registerClient(this); }
-	 * catch (RemoteException e) { e.printStackTrace(); } }
-	 */
 }

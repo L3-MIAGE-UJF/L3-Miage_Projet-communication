@@ -15,6 +15,12 @@ import java.util.Iterator;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.ClientGeneric.ModelRMIClientGenericRemote;
 
+/**
+ * @author groupe1
+ *
+ * @param <MR>
+ * @param <MC>
+ */
 public abstract class ModelRMIServerGeneric<MR extends ModelRMIServerGenericRemote, MC extends ModelRMIClientGenericRemote>
 		extends UnicastRemoteObject implements ModelRMI, ModelRMIServerGenericRemote<MC> {
 	/**
@@ -28,12 +34,19 @@ public abstract class ModelRMIServerGeneric<MR extends ModelRMIServerGenericRemo
 	// TODO Integrer liste Client plus optimisé
 	private volatile ArrayList<MC> clients;
 	
+	/**
+	 * @throws RemoteException
+	 */
 	public ModelRMIServerGeneric() throws RemoteException {
 		super();
 		launchServer("127.0.0.1");
 		// InetAddress.getLocalHost().getHostAddress();
 	}
 
+	/**
+	 * @param ip
+	 * @throws RemoteException
+	 */
 	public ModelRMIServerGeneric(String ip) throws RemoteException {
 		super();
 		launchServer(ip);
@@ -80,14 +93,24 @@ public abstract class ModelRMIServerGeneric<MR extends ModelRMIServerGenericRemo
 		}
 	}
 
+	/**
+	 * @param client
+	 */
 	protected void addClient(MC client) {
 		this.clients.add(client);
 	}
 
+	/**
+	 * @return
+	 */
 	protected ArrayList<MC> getAllClients() {
 		return this.clients;
 	}
 
+	/**
+	 * @param num
+	 * @return
+	 */
 	protected ModelRMIClientGenericRemote getClient(int num) {
 		return clients.get(num);
 	}
@@ -105,8 +128,16 @@ public abstract class ModelRMIServerGeneric<MR extends ModelRMIServerGenericRemo
 		actionOnClientRegistration(client);
 	}
 
+	/**
+	 * @param client
+	 */
 	protected abstract void actionOnClientRegistration(MC client);
 
+	/**
+	 * @param clientClass
+	 * @param methodName
+	 * @param args
+	 */
 	protected void callMethodOnAllClients(Class<? extends ModelRMIClientGenericRemote> clientClass, String methodName, Class[] args) {
 		System.out.println("call to all client");
 		MC currentClient = null;

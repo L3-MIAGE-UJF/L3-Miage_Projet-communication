@@ -20,13 +20,24 @@ import onodes.RMI.ServerGeneric.ModelRMIServerGenericRemote;
 public abstract class ControllerRMIClientGeneric<MR extends ModelRMIServerGenericRemote, M extends ModelRMIClientGeneric, V extends ViewRMIClientGeneric>
 		extends ControllerRMI<M, V> {
 
+	/**
+	 * 
+	 */
 	private MR mRMIServerRemote;
 
+	/**
+	 * @param model
+	 * @param view
+	 * @throws RemoteException
+	 */
 	public ControllerRMIClientGeneric(M model, V view) throws RemoteException {
 		super(model, view);
 		setLocalMRMIServerRemote();
 	}
 	
+	/**
+	 * 
+	 */
 	protected void setLocalMRMIServerRemote() {
 		try {
 			this.mRMIServerRemote = (MR) model.getMRMIServerRemote();
@@ -35,6 +46,9 @@ public abstract class ControllerRMIClientGeneric<MR extends ModelRMIServerGeneri
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public MR getmRMIServerRemote() {
 		return mRMIServerRemote;
 	}

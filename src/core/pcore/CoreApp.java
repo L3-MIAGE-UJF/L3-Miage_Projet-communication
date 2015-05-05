@@ -23,44 +23,8 @@ public final class CoreApp {
 	 * DevOps Write some code here
 	 * @param args
 	 */
-	
-
 	public static void mainApp(String[] args) {
-		
-		try {
-			ControllerMonAppRMIServer test = new ControllerMonAppRMIServer();
-			
-			Thread.sleep(100);
-			ControllerMonApp test1 = new ControllerMonApp();
-			
-			//ControllerMonAppRMIClient test2 = new ControllerMonAppRMIClient();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		try {
-			ControllerMonAppServer testserver = new ControllerMonAppServer();
 
-			Thread.sleep(100);
-
-			ControllerMonAppClient testclient = new ControllerMonAppClient();
-			testclient.startTEST();
-			
-			testserver.startTESTAll();
-			
-			//System.out.println((String) testserver.startTESTOne(0));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		//ControllerRMIServer<ModelRMIServer<ModelRMIServerRemote<ModelRMIClientRemote>, ModelRMIClientRemote>, ViewRMIServer> test = new ControllerRMIServer<ModelRMIServer, ViewRMIServer>(new ModelRMIServer<ModelRMIServerRemote, ModelRMIClientRemote>, new ViewRMIServer())
-		 * 	*/
 	}
 
 

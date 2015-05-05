@@ -1,15 +1,13 @@
 package pnodes.monAppServerGeneric.rmiserver;
 
-import java.lang.reflect.Method;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
-import onodes.RMI.ModelRMI;
-import onodes.RMI.ClientGeneric.ModelRMIClientGenericRemote;
 import onodes.RMI.ServerGeneric.ModelRMIServerGeneric;
-import onodes.RMI.ServerGeneric.ModelRMIServerGenericRemote;
 import pnodes.monAppClientGeneric.rmiclient.ModelMonAppRMIClientRemote;
 
+/**
+ * @author groupe1
+ *
+ */
 public class ModelMonAppRMIServer extends
 		ModelRMIServerGeneric<ModelMonAppRMIServerRemote, ModelMonAppRMIClientRemote>
 		implements ModelMonAppRMIServerRemote {
@@ -19,10 +17,17 @@ public class ModelMonAppRMIServer extends
 	 */
 	private static final long serialVersionUID = 4780327763814969334L;
 
+	/**
+	 * @throws RemoteException
+	 */
 	public ModelMonAppRMIServer() throws RemoteException {
 		super();
 	}
 
+	/**
+	 * @param ip
+	 * @throws RemoteException
+	 */
 	public ModelMonAppRMIServer(String ip) throws RemoteException {
 		super(ip);
 	}

@@ -11,14 +11,21 @@ import onodes.RMI.ControllerRMI;
  * @author groupe1
  *
  */
-
 public abstract class ControllerRMIServerGeneric<M extends ModelRMIServerGeneric, V extends ViewRMIServerGeneric>
 		extends ControllerRMI<ModelRMIServerGeneric, ViewRMIServerGeneric> {
 
+	/**
+	 * @throws RemoteException
+	 */
 	public ControllerRMIServerGeneric() throws RemoteException {
 		super();
 	}
 	
+	/**
+	 * @param model
+	 * @param view
+	 * @throws RemoteException
+	 */
 	public ControllerRMIServerGeneric(M model, V view) throws RemoteException {
 		super(model, view);
 	}

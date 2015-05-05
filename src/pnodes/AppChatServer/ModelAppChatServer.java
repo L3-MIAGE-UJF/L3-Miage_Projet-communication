@@ -1,8 +1,7 @@
-package pnodes.monAppServer;
+package pnodes.AppChatServer;
 
 import onodes.Model;
 import onodes.RMI.Server.ControllerRMIServer;
-
 import java.rmi.RemoteException;
 import java.util.Observable;
 
@@ -10,19 +9,19 @@ import java.util.Observable;
  * @author groupe1
  *
  */
-public class ModelMonAppServer extends Observable implements Model {
+public class ModelAppChatServer extends Observable implements Model {
 
 	/**
 	 * 
 	 */
-	private ControllerRMIServer<ControllerMonAppServer> cRMIs;
+	private ControllerRMIServer<ControllerAppChatServer> cRMIs;
 	
 	/**
 	 * @param cmappserv
 	 * @throws RemoteException
 	 */
-	public ModelMonAppServer(ControllerMonAppServer cmappserv) throws RemoteException {
-		cRMIs=new ControllerRMIServer<ControllerMonAppServer>(cmappserv);
+	public ModelAppChatServer(ControllerAppChatServer cmappserv) throws RemoteException {
+		cRMIs=new ControllerRMIServer<ControllerAppChatServer>(cmappserv);
 	}
 	
 	/**

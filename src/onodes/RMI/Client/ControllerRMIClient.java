@@ -20,16 +20,31 @@ import onodes.RMI.ControllerRMI;
 public class ControllerRMIClient<C extends Controller> extends
 		ControllerRMI<ModelRMIClient, ViewRMIClient> {
 
+	/**
+	 * @param controllerAppClient
+	 * @throws RemoteException
+	 */
 	public ControllerRMIClient(C controllerAppClient) throws RemoteException {
 		super();
 		model=new ModelRMIClient(controllerAppClient);
 	}
 	
+	/**
+	 * @param controllerAppClient
+	 * @param ip
+	 * @throws RemoteException
+	 */
 	public ControllerRMIClient(C controllerAppClient, String ip) throws RemoteException {
 		super();
 		model=new ModelRMIClient(controllerAppClient, ip);
 	}
 	
+	/**
+	 * @param methodName
+	 * @param cArgs
+	 * @param oArgs
+	 * @return
+	 */
 	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {
 		return model.invokeMethodOnControllerAppServer(methodName, cArgs, oArgs);
 	}

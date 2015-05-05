@@ -24,7 +24,13 @@ import onodes.RMI.Server.ModelRMIServerRemote;
 public class ModelRMIClient<C extends Controller> extends
 		UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
 
+	/**
+	 * 
+	 */
 	protected ModelRMIServerRemote modelRMIServerR;
+	/**
+	 * 
+	 */
 	private C controllerAppClient;
 	
 	/**
@@ -105,6 +111,12 @@ System.out.println("launch client ip : "+ip);
 		return "Retour ModelRMIClient UID=" + serialVersionUID;
 	}
 	
+	/**
+	 * @param methodName
+	 * @param args
+	 * @param oArgs
+	 * @return
+	 */
 	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args, Object[] oArgs) {
 		Object ret=null;
 		try {

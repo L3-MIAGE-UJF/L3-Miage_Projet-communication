@@ -1,9 +1,7 @@
 package pnodes.monAppServerGeneric.rmiserver;
 
 import java.rmi.RemoteException;
-
 import onodes.RMI.ServerGeneric.ControllerRMIServerGeneric;
-import onodes.RMI.ServerGeneric.ModelRMIServerGeneric;
 
 /**
  *
@@ -15,11 +13,19 @@ import onodes.RMI.ServerGeneric.ModelRMIServerGeneric;
 public class ControllerMonAppRMIServer extends
 		ControllerRMIServerGeneric<ModelMonAppRMIServer, ViewMonAppRMIServer> {
 
+	/**
+	 * @throws RemoteException
+	 */
 	public ControllerMonAppRMIServer() throws RemoteException {
 		this.model = new ModelMonAppRMIServer();
 		this.view = new ViewMonAppRMIServer();
 	}
 
+	/**
+	 * @param model
+	 * @param view
+	 * @throws RemoteException
+	 */
 	public ControllerMonAppRMIServer(ModelMonAppRMIServer model,
 			ViewMonAppRMIServer view) throws RemoteException {
 		super(model, view);

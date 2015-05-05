@@ -1,6 +1,5 @@
 package pnodes.monAppClientGeneric;
 
-import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,6 +10,10 @@ import javax.swing.JPanel;
 
 import onodes.View;
 
+/**
+ * @author groupe1
+ *
+ */
 public class ViewMonApp extends JFrame implements View, Observer {
 	
 	/**
@@ -18,8 +21,14 @@ public class ViewMonApp extends JFrame implements View, Observer {
 	 */
 	private static final long serialVersionUID = -4595300148105306773L;
 
-	//TODO Temporaire, ajouter listener
+	//TODO Ajouter listener
+	/**
+	 * 
+	 */
 	private ControllerMonApp controller;
+	/**
+	 * 
+	 */
 	private ModelMonApp model;
 	
 	private javax.swing.JPanel panel;
@@ -27,12 +36,19 @@ public class ViewMonApp extends JFrame implements View, Observer {
 	private javax.swing.JButton boutonRemote;
 	private javax.swing.JLabel textTitre;
 
+	/**
+	 * @param controller
+	 * @param model
+	 */
 	public ViewMonApp(ControllerMonApp controller, ModelMonApp model) {
 		this.controller=controller;
 		this.model=model;
 		initComponents();
 	}
 	
+	/**
+	 * 
+	 */
 	private void initComponents() {
 		this.setTitle("Animation");
 
@@ -69,17 +85,22 @@ public class ViewMonApp extends JFrame implements View, Observer {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * @param evt
+	 */
 	private void boutonActionPerformed(java.awt.event.ActionEvent evt) {
 		this.controller.actionBouton();
 	}
 
+	/**
+	 * @param evt
+	 */
 	private void boutonRemoteActionPerformed(java.awt.event.ActionEvent evt) {
 		this.controller.actionBoutonRemote();
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		System.out.println("Update ViewApp");
 		
 		textTitre.setText(model.getTitre());
