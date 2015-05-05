@@ -4,8 +4,6 @@ import java.rmi.RemoteException;
 
 import onodes.Controller;
 import onodes.RMI.ControllerRMI;
-import onodes.RMI.Server.ModelRMIServerRemote;
-import pnodes.monAppClient.ControllerMonAppClient;
 
 /*
  * Besoin de conserver la même architecture de package dans Le serveur comme le client
@@ -25,6 +23,11 @@ public class ControllerRMIClient<C extends Controller> extends
 	public ControllerRMIClient(C controllerAppClient) throws RemoteException {
 		super();
 		model=new ModelRMIClient(controllerAppClient);
+	}
+	
+	public ControllerRMIClient(C controllerAppClient, String ip) throws RemoteException {
+		super();
+		model=new ModelRMIClient(controllerAppClient, ip);
 	}
 	
 	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {

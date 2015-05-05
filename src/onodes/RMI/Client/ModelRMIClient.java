@@ -13,8 +13,6 @@ import java.security.AccessControlException;
 import onodes.Controller;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Server.ModelRMIServerRemote;
-import pnodes.monAppClient.ControllerMonAppClient;
-import pnodes.monAppServer.ControllerMonAppServer;
 
 /**
  *

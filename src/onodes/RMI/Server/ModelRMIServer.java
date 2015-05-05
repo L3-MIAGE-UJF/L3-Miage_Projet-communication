@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import onodes.Controller;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
-import pnodes.monAppServer.ControllerMonAppServer;
 
 public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject implements ModelRMI,
 		ModelRMIServerRemote<ModelRMIClientRemote> {
@@ -39,14 +38,9 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		// InetAddress.getLocalHost().getHostAddress();
 	}
 
-	public ModelRMIServer() throws RemoteException {
+	public ModelRMIServer(C controllerrmiserv, String ip) throws RemoteException {
 		super();
-		launchServer("127.0.0.1");
-		// InetAddress.getLocalHost().getHostAddress();
-	}
-
-	public ModelRMIServer(String ip) throws RemoteException {
-		super();
+		this.controllerAppServer = controllerrmiserv;
 		launchServer(ip);
 	}
 

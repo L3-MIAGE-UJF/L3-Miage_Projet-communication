@@ -22,25 +22,6 @@ public final class CoreApp {
 	 * @param args
 	 */
 	public static void mainApp(String[] args) {
-		
-		/*
-		try {
-		 
-			ControllerMonAppRMIServer test = new ControllerMonAppRMIServer();
-			
-			Thread.sleep(100);
-			ControllerMonApp test1 = new ControllerMonApp();
-			
-			//ControllerMonAppRMIClient test2 = new ControllerMonAppRMIClient();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-
 		try {
 			ControllerMonAppServer testserver = new ControllerMonAppServer();
 

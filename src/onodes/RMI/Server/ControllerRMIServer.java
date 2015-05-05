@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 
 import onodes.Controller;
 import onodes.RMI.ControllerRMI;
-import pnodes.monAppServer.ControllerMonAppServer;
 
 /**
  *
@@ -22,8 +21,10 @@ public class ControllerRMIServer<C extends Controller> extends ControllerRMI<Mod
 		view=new ViewRMIServer();
 	}
 	
-	public ControllerRMIServer(ModelRMIServer model, ViewRMIServer view) throws RemoteException {
-		super(model, view);
+	public ControllerRMIServer(C cappserv, String ip) throws RemoteException {
+		super();
+		model=new ModelRMIServer(cappserv, ip);
+		view=new ViewRMIServer();
 	}
 
 	public void invokeMethodOnAllControllerAppClient(String methodName,

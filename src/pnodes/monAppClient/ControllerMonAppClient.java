@@ -10,10 +10,6 @@ public class ControllerMonAppClient extends Controller<ModelMonAppClient, ViewMo
 		this.model = new ModelMonAppClient(this);
 		this.view = new ViewMonAppClient();
 	}
-
-	public ControllerMonAppClient(ModelMonAppClient model, ViewMonAppClient view) {
-		super(model, view);
-	}
 	
 	public void startTEST() {
 		String testretour = (String) model.invokeMethodOnControllerAppServer("testAppServer", new Class[] {}, new Object[] {});
