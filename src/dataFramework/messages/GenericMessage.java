@@ -9,12 +9,24 @@ import dataFramework.users.GenericUser;
 /**
  * @author groupe1
  *
- * @param <U>
- * @param <C>
+ * @param <U> U correspond a un User qui sera expediteur. Cet User doit etendre GenericUser.
+ * @param <C> C correspond a un content qui doit etendre GenericContent.
  */
 public class GenericMessage<U extends GenericUser, C extends GenericContent> {
-    protected U sender = null; //Expediteur
+    
+	/**
+	 * sender est l'utilisateur envoyant le message.
+	 */
+	protected U sender = null; //Expediteur
+	
+	/**
+	 * content est le contenu du message.
+	 */
     protected C content; //Contenu du message
+    
+    /**
+     * time a pour valeur le moment ou le message a ete poste.
+     */
     protected String time; //Heure du message
 
     
@@ -30,15 +42,6 @@ public class GenericMessage<U extends GenericUser, C extends GenericContent> {
         this.time = format.format(new Date());
     }
 
-    /** Cree un GenericMessage
-     * @param receiver
-     * @param content Contenu du message
-     */
-    /*public GenericMessage(R receiver, C content) {
-        this.receiver = receiver;
-        SimpleDateFormat format = new SimpleDateFormat("H:mm:ss");
-        this.time = format.format(new Date());
-    }*/
 
     /** Permet de recuperer l'expediteur
      * @return L'expediteur du message
@@ -47,12 +50,6 @@ public class GenericMessage<U extends GenericUser, C extends GenericContent> {
         return sender;
     }
 
-    /** Permet de recuperer le recepteur
-     * @return Le recepteur du message
-     */
-    /*public R getReceiver() {
-        return receiver;
-    }*/
 
     /** Permet de recuperer le contenu du message
      * @return Le contenu du message
