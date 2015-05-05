@@ -1,5 +1,7 @@
 package onodes.RMI.Client;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
@@ -10,6 +12,8 @@ import java.security.AccessControlException;
 
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Server.ModelRMIServerRemote;
+import pnodes.monAppClient.ControllerMonAppClient;
+import pnodes.monAppServer.ControllerMonAppServer;
 
 /**
  *
@@ -24,6 +28,8 @@ public class ModelRMIClient extends
 	
 	//TODO DEGEU
 	protected ModelRMIServerRemote modelRMIServerR;
+	private ControllerMonAppClient controllerAppClient;
+	
 	/**
 	 * 
 	 */
@@ -33,8 +39,9 @@ public class ModelRMIClient extends
 	 * 
 	 * @throws RemoteException
 	 */
-	public ModelRMIClient() throws RemoteException {
+	public ModelRMIClient(ControllerMonAppClient controllerAppClient) throws RemoteException {
 		super();
+		this.controllerAppClient=controllerAppClient;
 		launchClient("127.0.0.1");
 	}
 
@@ -43,9 +50,10 @@ public class ModelRMIClient extends
 	 * @param ip
 	 * @throws RemoteException
 	 */
-	public ModelRMIClient(String ip) throws RemoteException {
+	public ModelRMIClient(ControllerMonAppClient controllerAppClient, String ip) throws RemoteException {
 		super();
 		// TODO Match regexp of ip addr
+		this.controllerAppClient=controllerAppClient;
 		launchClient(ip);
 	}
 
@@ -110,8 +118,47 @@ public class ModelRMIClient extends
 		}
 		return ret;
 	}
-	/*
-	 * public void regOnServer(MR serv) { try { serv.registerClient(this); }
-	 * catch (RemoteException e) { e.printStackTrace(); } }
-	 */
+
+	@Override
+	public Object invokeMethodOnControllerAppClient(String methodName,
+			Class[] args) throws RemoteException {
+
+		Object ret = null;
+
+		Method method = null;
+
+		try {
+			method = controllerAppClient.getClass().getMethod(methodName, args);
+
+			if (method ==null) {
+				System.out.println("erreur method");
+			}
+			if (controllerAppClient==null) {
+				System.out.println("erreur controller");
+			}
+			
+			if (method == null) {
+				System.err
+				.println("Attention la methode "
+						+ methodName
+						+ " avec les parametres "
+						+ args
+						+ " n'existe pas sur le Controlleur de l'application Client");
+			} else {
+				ret = method.invoke(controllerAppClient, args);	
+			}
+		} catch (NoSuchMethodException e) {
+			e.getMessage();
+		} catch (SecurityException e) {
+			e.getMessage();
+		} catch (IllegalAccessException e) {
+			e.getMessage();
+		} catch (IllegalArgumentException e) {
+			e.getMessage();
+		} catch (InvocationTargetException e) {
+			e.getMessage();
+		}
+
+		return ret;
+	}
 }

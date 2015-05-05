@@ -18,4 +18,12 @@ public class ControllerMonAppServer extends Controller<ModelMonAppServer, ViewMo
 	public String testAppServer() {
 		return "retour methode de test sur serveur";
 	}
+	
+	public void startTESTAll() {
+		model.invokeMethodOnAllControllerAppClient("testAppClient", new Class[] {});
+	}
+	
+	public Object startTESTOne(int id) {
+		return model.invokeMethodOnControllerAppClient(id, "testAppClient", new Class[] {});
+	}
 }

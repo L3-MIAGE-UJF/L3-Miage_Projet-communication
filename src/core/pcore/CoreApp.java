@@ -42,23 +42,20 @@ public final class CoreApp {
 		*/
 
 		try {
-			ControllerMonAppServer test = new ControllerMonAppServer();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		try {
+			ControllerMonAppServer testserver = new ControllerMonAppServer();
+
 			Thread.sleep(100);
-		} catch (InterruptedException e) {
+
+			ControllerMonAppClient testclient = new ControllerMonAppClient();
+			testclient.startTEST();
+			
+			testserver.startTESTAll();
+			
+			System.out.println((String) testserver.startTESTOne(0));
+		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		try {
-			ControllerMonAppClient testclient = new ControllerMonAppClient();
-			testclient.start();
-		} catch (RemoteException e) {
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

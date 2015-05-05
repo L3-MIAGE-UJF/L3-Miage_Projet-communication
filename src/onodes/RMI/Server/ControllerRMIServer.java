@@ -24,4 +24,14 @@ public class ControllerRMIServer extends ControllerRMI<ModelRMIServer, ViewRMISe
 	public ControllerRMIServer(ModelRMIServer model, ViewRMIServer view) throws RemoteException {
 		super(model, view);
 	}
+
+	public void invokeMethodOnAllControllerAppClient(String methodName,
+			Class[] args) {
+		model.invokeMethodOnAllControllerAppClient(methodName, args);
+	}
+	
+	public Object invokeMethodOnControllerAppClient (int idClient, String methodName,
+			Class[] args) {
+		return model.invokeMethodOnControllerAppClient(idClient, methodName, args);
+	}
 }

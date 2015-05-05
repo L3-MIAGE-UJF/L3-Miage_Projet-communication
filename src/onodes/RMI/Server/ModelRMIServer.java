@@ -99,13 +99,13 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
 
 			if (method == null) {
 				System.err
-				.println("Attention la methode "
-						+ methodName
-						+ " avec les parametres "
-						+ args
-						+ " n'existe pas sur le Controlleur de l'application Serveur");
+						.println("Attention la methode "
+								+ methodName
+								+ " avec les parametres "
+								+ args
+								+ " n'existe pas sur le Controlleur de l'application Serveur");
 			} else {
-				ret = method.invoke(controllerAppServer, args);	
+				ret = method.invoke(controllerAppServer, args);
 			}
 		} catch (NoSuchMethodException e) {
 			e.getMessage();
@@ -122,6 +122,39 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
 		return ret;
 	}
 
+	public void invokeMethodOnAllControllerAppClient(String methodName,
+			Class[] args) {
+		ModelRMIClientRemote currentClient;
+		try {
+			for (int i = 0; i < clients.size(); i++) {
+				currentClient = clients.get(i);
+				currentClient.invokeMethodOnControllerAppClient(methodName,
+						args);
+			}
+		} catch (RemoteException e) {
+			System.err.println("Remote Exception when RMI Server call method "
+					+ methodName + " on modelRMIClientRemote");
+			e.printStackTrace();
+		}
+	}
+
+	public Object invokeMethodOnControllerAppClient(int idClient,
+			String methodName, Class[] args) {
+		Object ret = null;
+
+		try {
+			ModelRMIClientRemote currentClient;
+			currentClient = clients.get(idClient);
+			ret=currentClient.invokeMethodOnControllerAppClient(methodName, args);
+		} catch (RemoteException e) {
+			System.err.println("Remote Exception when RMI Server call method "
+					+ methodName + " on modelRMIClientRemote");
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+
 	@Override
 	public String getInfoServer() throws RemoteException {
 		return "Retour ModelRMIServer UID=" + serialVersionUID;
@@ -130,12 +163,14 @@ public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
 	protected void addClient(ModelRMIClientRemote client) {
 		this.clients.add(client);
 	}
-	
+
 	@Override
-	public void registerClient(ModelRMIClientRemote client) throws RemoteException {
+	public void registerClient(ModelRMIClientRemote client)
+			throws RemoteException {
 		addClient(client);
 		System.out.println("ModelRMIServer UID=" + serialVersionUID
 				+ " : New client registered : " + client.getInfoClient());
-		this.invokeMethodOnControllerAppServer("actionOnClientRegistration", new Class[] {ModelRMIClientRemote.class});
+		this.invokeMethodOnControllerAppServer("actionOnClientRegistration",
+				new Class[] { ModelRMIClientRemote.class });
 	}
 }
