@@ -23,5 +23,5 @@ public interface ModelRMIClientRemote extends Remote {
 	public String getInfoClient() throws RemoteException;
 
 	public Object invokeMethodOnControllerAppClient(String methodName,
-			Class[] args) throws RemoteException;
+			Class[] cArgs, Object[] oArgs) throws RemoteException;
 }

@@ -32,5 +32,5 @@ public interface ModelRMIServerRemote<MC extends ModelRMIClientRemote> extends R
 	 */
 	public void registerClient(MC client) throws RemoteException;
 	
-	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args) throws RemoteException;
+	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args, Object[] oArgs) throws RemoteException;
 }

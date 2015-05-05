@@ -26,7 +26,7 @@ public class ControllerRMIClient extends
 		model=new ModelRMIClient(controllerAppClient);
 	}
 	
-	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args) {
-		return model.invokeMethodOnControllerAppServer(methodName, args);
+	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {
+		return model.invokeMethodOnControllerAppServer(methodName, cArgs, oArgs);
 	}
 }

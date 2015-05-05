@@ -26,12 +26,12 @@ public class ControllerRMIServer extends ControllerRMI<ModelRMIServer, ViewRMISe
 	}
 
 	public void invokeMethodOnAllControllerAppClient(String methodName,
-			Class[] args) {
-		model.invokeMethodOnAllControllerAppClient(methodName, args);
+			Class[] cArgs, Object[] oArgs) {
+		model.invokeMethodOnAllControllerAppClient(methodName, cArgs, oArgs);
 	}
 	
 	public Object invokeMethodOnControllerAppClient (int idClient, String methodName,
-			Class[] args) {
-		return model.invokeMethodOnControllerAppClient(idClient, methodName, args);
+			Class[] cArgs, Object[] oArgs) {
+		return model.invokeMethodOnControllerAppClient(idClient, methodName, cArgs, oArgs);
 	}
 }

@@ -16,7 +16,7 @@ public class ModelMonAppClient extends Observable implements Model {
 		cRMIc=new ControllerRMIClient(controllerAppClient);
 	}
 
-	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args) {
-		return cRMIc.invokeMethodOnControllerAppServer(methodName, args);
+	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {
+		return cRMIc.invokeMethodOnControllerAppServer(methodName, cArgs, oArgs);
 	}
 }

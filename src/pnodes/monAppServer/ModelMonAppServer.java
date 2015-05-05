@@ -15,11 +15,11 @@ public class ModelMonAppServer extends Observable implements Model {
 		cRMIs=new ControllerRMIServer(cmappserv);
 	}
 	
-	public void invokeMethodOnAllControllerAppClient(String methodName, Class[] args) {
-		cRMIs.invokeMethodOnAllControllerAppClient(methodName, args);
+	public void invokeMethodOnAllControllerAppClient(String methodName, Class[] cArgs, Object[] oArgs) {
+		cRMIs.invokeMethodOnAllControllerAppClient(methodName, cArgs, oArgs);
 	}
 	
-	public Object invokeMethodOnControllerAppClient(int idClient, String methodName, Class[] args) {
-		return cRMIs.invokeMethodOnControllerAppClient(idClient, methodName, args);
+	public Object invokeMethodOnControllerAppClient(int idClient, String methodName, Class[] cArgs, Object[] oArgs) {
+		return cRMIs.invokeMethodOnControllerAppClient(idClient, methodName, cArgs, oArgs);
 	}
 }

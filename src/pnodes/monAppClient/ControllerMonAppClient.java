@@ -16,7 +16,7 @@ public class ControllerMonAppClient extends Controller<ModelMonAppClient, ViewMo
 	}
 	
 	public void startTEST() {
-		String testretour = (String) model.invokeMethodOnControllerAppServer("testAppServer", new Class[] {});
+		String testretour = (String) model.invokeMethodOnControllerAppServer("testAppServer", new Class[] {}, new Object[] {});
 		System.out.println(testretour);
 	}
 	

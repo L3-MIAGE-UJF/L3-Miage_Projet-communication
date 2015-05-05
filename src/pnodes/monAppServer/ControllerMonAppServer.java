@@ -20,10 +20,10 @@ public class ControllerMonAppServer extends Controller<ModelMonAppServer, ViewMo
 	}
 	
 	public void startTESTAll() {
-		model.invokeMethodOnAllControllerAppClient("testAppClient", new Class[] {});
+		model.invokeMethodOnAllControllerAppClient("testAppClient", new Class[] {}, new Object[] {});
 	}
 	
 	public Object startTESTOne(int id) {
-		return model.invokeMethodOnControllerAppClient(id, "testAppClient", new Class[] {});
+		return model.invokeMethodOnControllerAppClient(id, "testAppClient", new Class[] {}, new Object[] {});
 	}
 }

@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 
+import onodes.AppuRMI.ControllerAppuRMI;
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Server.ModelRMIServerRemote;
 import pnodes.monAppClient.ControllerMonAppClient;
@@ -25,8 +26,6 @@ import pnodes.monAppServer.ControllerMonAppServer;
 public class ModelRMIClient extends
 		UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
 
-	
-	//TODO DEGEU
 	protected ModelRMIServerRemote modelRMIServerR;
 	private ControllerMonAppClient controllerAppClient;
 	
@@ -108,10 +107,10 @@ public class ModelRMIClient extends
 		return "Retour ModelRMIClient UID=" + serialVersionUID;
 	}
 	
-	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args) {
+	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args, Object[] oArgs) {
 		Object ret=null;
 		try {
-			ret=modelRMIServerR.invokeMethodOnControllerAppServer(methodName, args);
+			ret=modelRMIServerR.invokeMethodOnControllerAppServer(methodName, args, oArgs);
 		} catch (RemoteException e) {
 			System.err.println("Remote Exception when RMI Client call method "+methodName+" on modelRMIServerRemote");
 			e.printStackTrace();
@@ -121,14 +120,14 @@ public class ModelRMIClient extends
 
 	@Override
 	public Object invokeMethodOnControllerAppClient(String methodName,
-			Class[] args) throws RemoteException {
+			Class[] cArgs, Object[] oArgs) throws RemoteException {
 
 		Object ret = null;
 
 		Method method = null;
 
 		try {
-			method = controllerAppClient.getClass().getMethod(methodName, args);
+			method = controllerAppClient.getClass().getMethod(methodName, cArgs);
 
 			if (method ==null) {
 				System.out.println("erreur method");
@@ -142,10 +141,10 @@ public class ModelRMIClient extends
 				.println("Attention la methode "
 						+ methodName
 						+ " avec les parametres "
-						+ args
+						+ oArgs
 						+ " n'existe pas sur le Controlleur de l'application Client");
 			} else {
-				ret = method.invoke(controllerAppClient, args);	
+				ret = method.invoke(controllerAppClient, oArgs);	
 			}
 		} catch (NoSuchMethodException e) {
 			e.getMessage();
