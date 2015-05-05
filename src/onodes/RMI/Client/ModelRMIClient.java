@@ -18,12 +18,12 @@ import onodes.RMI.Server.ModelRMIServerRemote;
  * @author groupe1
  *
  */
-public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
+public class ModelRMIClient extends
 		UnicastRemoteObject implements ModelRMI, ModelRMIClientRemote {
 
 	
 	//TODO DEGEU
-	protected MR serv;
+	protected ModelRMIServerRemote modelRMIServerR;
 	/**
 	 * 
 	 */
@@ -71,14 +71,14 @@ public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
 				System.out.println("ModelRMIClient UID=" + serialVersionUID
 						+ " : chaine renvoyee = " + s);
 
-				this.serv = (MR) r;
+				this.modelRMIServerR = (ModelRMIServerRemote) r;
 		
 			} else {
 				System.out.println("ModelRMIClient UID=" + serialVersionUID
 						+ " : Instance incorrecte");
 			}
 
-			this.serv.registerClient(this);
+			this.modelRMIServerR.registerClient(this);
 			
 			System.out.println("ModelRMIClient UID=" + serialVersionUID
 					+ " : Client Lancé");
@@ -99,9 +99,16 @@ public abstract class ModelRMIClient<MR extends ModelRMIServerRemote> extends
 	public String getInfoClient() throws RemoteException {
 		return "Retour ModelRMIClient UID=" + serialVersionUID;
 	}
-
-	public MR getMRMIServerRemote() {
-		return serv;
+	
+	public Object invokeMethodOnControllerAppServer(String methodName, Class[] args) {
+		Object ret=null;
+		try {
+			ret=modelRMIServerR.invokeMethodOnControllerAppServer(methodName, args);
+		} catch (RemoteException e) {
+			System.err.println("Remote Exception when RMI Client call method "+methodName+" on modelRMIServerRemote");
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	/*
 	 * public void regOnServer(MR serv) { try { serv.registerClient(this); }

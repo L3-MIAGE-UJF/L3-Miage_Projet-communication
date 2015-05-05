@@ -4,8 +4,6 @@ import java.rmi.RemoteException;
 
 import onodes.RMI.ControllerRMI;
 import onodes.RMI.Server.ModelRMIServerRemote;
-import pnodes.monappli.rmiclient.ModelMonAppRMIClient;
-import pnodes.monappli.rmiclient.ViewMonAppRMIClient;
 
 /*
  * Besoin de conserver la même architecture de package dans Le serveur comme le client
@@ -19,25 +17,15 @@ import pnodes.monappli.rmiclient.ViewMonAppRMIClient;
  * @author groupe1
  *
  */
-public abstract class ControllerRMIClient<MR extends ModelRMIServerRemote, M extends ModelRMIClient, V extends ViewRMIClient>
-		extends ControllerRMI<M, V> {
+public class ControllerRMIClient extends
+		ControllerRMI<ModelRMIClient, ViewRMIClient> {
 
-	private MR mRMIServerRemote;
-
-	public ControllerRMIClient(M model, V view) throws RemoteException {
-		super(model, view);
-		setLocalMRMIServerRemote();
+	public ControllerRMIClient() throws RemoteException {
+		super();
+		model=new ModelRMIClient();
 	}
 	
-	protected void setLocalMRMIServerRemote() {
-		try {
-			this.mRMIServerRemote = (MR) model.getMRMIServerRemote();
-		} catch (NullPointerException e) {
-			e.getMessage();
-		}
-	}
-	
-	public MR getmRMIServerRemote() {
-		return mRMIServerRemote;
+	public Object invokeMethodOnControllerAppServer(String name, Class[] c) {
+		return model.invokeMethodOnControllerAppServer(name, c);
 	}
 }

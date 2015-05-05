@@ -1,37 +1,22 @@
-package pnodes.monappli;
+package pnodes.monAppServer;
 
 import onodes.Model;
+import onodes.RMI.Server.ControllerRMIServer;
 import onodes.RMI.Server.ModelRMIServer;
 
 import java.rmi.RemoteException;
 import java.util.Observable;
 
-import pnodes.monappli.rmiclient.ControllerMonAppRMIClient;
-import pnodes.monappli.rmiclient.ModelMonAppRMIClient;
-import pnodes.monappli.rmiserver.ModelMonAppRMIServerRemote;
+public class ModelMonAppServer extends Observable implements Model {
 
-public class ModelMonApp extends Observable implements Model {
-
-	private ControllerMonAppRMIClient cmapp;
-	private ModelMonAppRMIServerRemote remoteMod;
+	private ControllerRMIServer crmiserv;
+	//private ModelMonAppRMIServerRemote remoteMod;
 	
 	private String titre = "Origin";
 	private int compteur = 0;
 	
-	public ModelMonApp() throws RemoteException {
-		try {
-			cmapp=new ControllerMonAppRMIClient();
-			if (cmapp==null) {
-				System.err.println("ERREUR cmapp SALE CONNARD");
-			}
-			remoteMod=cmapp.getmRMIServerRemote();
-			if (remoteMod==null) {
-				System.err.println("ERREUR remoteMod SALE CONNARD");
-			}
-		}
-		catch (NullPointerException e) {
-			e.getMessage();
-		}
+	public ModelMonAppServer(ControllerMonAppServer cmappserv) throws RemoteException {
+		crmiserv= new ControllerRMIServer(cmappserv);
 	}
 	
 	/*
@@ -39,7 +24,7 @@ public class ModelMonApp extends Observable implements Model {
 		this.addObserver(view);
 	}
 	*/
-	
+	/*
 	public void traitementActionBouton() {
 		System.out.println("Traitement de l'action du bouton");
 		titre="nouveau string";
@@ -56,7 +41,7 @@ public class ModelMonApp extends Observable implements Model {
 		setChanged();
 		notifyObservers();
 	}
-	
+	*/
 	public String getTitre() {
 		compteur++;
 		return titre+" "+compteur;

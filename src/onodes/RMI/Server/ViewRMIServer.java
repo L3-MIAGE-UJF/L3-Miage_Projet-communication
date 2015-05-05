@@ -2,6 +2,6 @@ package onodes.RMI.Server;
 
 import onodes.RMI.ViewRMI;
 
-public abstract class ViewRMIServer implements ViewRMI {
+public class ViewRMIServer implements ViewRMI {
 
 }

@@ -10,13 +10,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import onodes.RMI.ModelRMI;
 import onodes.RMI.Client.ModelRMIClientRemote;
+import pnodes.monAppServer.ControllerMonAppServer;
 
-public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends ModelRMIClientRemote>
-		extends UnicastRemoteObject implements ModelRMI, ModelRMIServerRemote<MC> {
+public class ModelRMIServer extends UnicastRemoteObject implements ModelRMI,
+		ModelRMIServerRemote<ModelRMIClientRemote> {
 	/**
 	 * 
 	 */
@@ -26,8 +26,18 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 	 * 
 	 */
 	// TODO Integrer liste Client plus optimisé
-	private volatile ArrayList<MC> clients;
-	
+	private volatile ArrayList<ModelRMIClientRemote> clients;
+
+	private ControllerMonAppServer controllerAppServer;
+
+	public ModelRMIServer(ControllerMonAppServer controllerrmiserv)
+			throws RemoteException {
+		super();
+		this.controllerAppServer = controllerrmiserv;
+		launchServer("127.0.0.1");
+		// InetAddress.getLocalHost().getHostAddress();
+	}
+
 	public ModelRMIServer() throws RemoteException {
 		super();
 		launchServer("127.0.0.1");
@@ -39,13 +49,9 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 		launchServer(ip);
 	}
 
-	/**
-	 * 
-	 * @param ip
-	 */
 	private void launchServer(String ip) {
 		try {
-			this.clients = new ArrayList<MC>();
+			this.clients = new ArrayList<ModelRMIClientRemote>();
 
 			System.out
 					.println("=================================================================");
@@ -80,16 +86,40 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 		}
 	}
 
-	protected void addClient(MC client) {
-		this.clients.add(client);
-	}
+	@Override
+	public Object invokeMethodOnControllerAppServer(String methodName,
+			Class[] args) throws RemoteException {
 
-	protected ArrayList<MC> getAllClients() {
-		return this.clients;
-	}
+		Object ret = null;
 
-	protected ModelRMIClientRemote getClient(int num) {
-		return clients.get(num);
+		Method method = null;
+
+		try {
+			method = controllerAppServer.getClass().getMethod(methodName, args);
+
+			if (method == null) {
+				System.err
+				.println("Attention la methode "
+						+ methodName
+						+ " avec les parametres "
+						+ args
+						+ " n'existe pas sur le Controlleur de l'application Serveur");
+			} else {
+				ret = method.invoke(controllerAppServer, args);	
+			}
+		} catch (NoSuchMethodException e) {
+			e.getMessage();
+		} catch (SecurityException e) {
+			e.getMessage();
+		} catch (IllegalAccessException e) {
+			e.getMessage();
+		} catch (IllegalArgumentException e) {
+			e.getMessage();
+		} catch (InvocationTargetException e) {
+			e.getMessage();
+		}
+
+		return ret;
 	}
 
 	@Override
@@ -97,53 +127,15 @@ public abstract class ModelRMIServer<MR extends ModelRMIServerRemote, MC extends
 		return "Retour ModelRMIServer UID=" + serialVersionUID;
 	}
 
+	protected void addClient(ModelRMIClientRemote client) {
+		this.clients.add(client);
+	}
+	
 	@Override
-	public void registerClient(MC client) throws RemoteException {
+	public void registerClient(ModelRMIClientRemote client) throws RemoteException {
 		addClient(client);
 		System.out.println("ModelRMIServer UID=" + serialVersionUID
 				+ " : New client registered : " + client.getInfoClient());
-		actionOnClientRegistration(client);
-	}
-
-	protected abstract void actionOnClientRegistration(MC client);
-
-	protected void callMethodOnAllClients(Class<? extends ModelRMIClientRemote> clientClass, String methodName, Class[] args) {
-		System.out.println("call to all client");
-		MC currentClient = null;
-
-		Method method = null;
-		
-		try {
-			method = clientClass.getMethod(methodName, args);
-		} catch (NoSuchMethodException e) {
-			e.getMessage();
-		} catch	(SecurityException e) {
-			e.getMessage();
-		}
-		
-		for (int i=0; i<clients.size(); i++) {
-			currentClient=clients.get(i);
-				try {
-					if (method==null) {
-						System.out.println("echec et mat method");
-					}
-					
-					if (currentClient==null) {
-						System.out.println("echec et mat client");
-					}
-					
-					if (args==null) {
-						System.out.println("echec et mat args");
-					}
-					
-					method.invoke(currentClient, args);
-				} catch (IllegalAccessException e) {
-					e.getMessage();
-				} catch (IllegalArgumentException e) {
-					e.getMessage();
-				} catch (InvocationTargetException e) {
-					e.getMessage();
-				}
-		}
+		this.invokeMethodOnControllerAppServer("actionOnClientRegistration", new Class[] {ModelRMIClientRemote.class});
 	}
 }
