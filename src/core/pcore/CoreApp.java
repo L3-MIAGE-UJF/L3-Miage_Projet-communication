@@ -34,10 +34,8 @@ public final class CoreApp {
 			
 			System.out.println((String) testserver.startTESTOne(0));
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

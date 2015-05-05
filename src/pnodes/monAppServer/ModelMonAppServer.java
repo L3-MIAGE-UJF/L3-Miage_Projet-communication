@@ -11,7 +11,7 @@ public class ModelMonAppServer extends Observable implements Model {
 	private ControllerRMIServer<ControllerMonAppServer> cRMIs;
 	
 	public ModelMonAppServer(ControllerMonAppServer cmappserv) throws RemoteException {
-		cRMIs=new ControllerRMIServer<ControllerMonAppServer>(cmappserv, "127.0.0.1");
+		cRMIs=new ControllerRMIServer<ControllerMonAppServer>(cmappserv);
 	}
 	
 	public void invokeMethodOnAllControllerAppClient(String methodName, Class[] cArgs, Object[] oArgs) {

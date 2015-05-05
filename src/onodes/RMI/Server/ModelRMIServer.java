@@ -2,7 +2,11 @@ package onodes.RMI.Server;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
@@ -10,6 +14,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.AccessControlException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import onodes.Controller;
 import onodes.RMI.ModelRMI;
@@ -34,8 +39,30 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 			throws RemoteException {
 		super();
 		this.controllerAppServer = controllerrmiserv;
-		launchServer("127.0.0.1");
+		launchServer(getFirstNonLocalAdress());
 		// InetAddress.getLocalHost().getHostAddress();
+	}
+
+	private String getFirstNonLocalAdress() {
+		String ret = null;
+	    Enumeration en;
+		try {
+			en = NetworkInterface.getNetworkInterfaces();
+		    while (en.hasMoreElements()) {
+		        NetworkInterface i = (NetworkInterface) en.nextElement();
+		        for (Enumeration en2 = i.getInetAddresses(); en2.hasMoreElements();) {
+		            InetAddress addr = (InetAddress) en2.nextElement();
+		            if (!addr.isLoopbackAddress()) {
+		                if (addr instanceof Inet4Address) {
+		                    ret=addr.getHostAddress();
+		                }
+		            }
+		        }
+		    }
+		} catch (SocketException e) {
+			e.getMessage();
+		}
+	    return ret;
 	}
 
 	public ModelRMIServer(C controllerrmiserv, String ip) throws RemoteException {

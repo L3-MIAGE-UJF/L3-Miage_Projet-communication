@@ -68,7 +68,7 @@ public class ModelRMIClient<C extends Controller> extends
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}
-
+System.out.println("launch client ip : "+ip);
 			Remote r = Naming.lookup("rmi://" + ip + "/testRMIserver");
 
 			if (r instanceof ModelRMIServerRemote) {
