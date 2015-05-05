@@ -10,6 +10,7 @@
 #pnodes.monAppServer.ControllerMonAppServer
 
 #Application RMI Client
+#Besoin de coder IP en dur
 #pnodes.monAppClient.ControllerMonAppClient
 
 #Application Chat Server

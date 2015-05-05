@@ -31,7 +31,7 @@ public class Core {
 		/*
 		 * Déclaration des fichiers de configuration contenant la liste des modules a activer
 		 */
-		File file = new File("/home/d/douchetm/L3/projet-com/src/config/activated_controller.list");
+		File file = new File("D:\\Desktop\\projetcom\\projet-com\\src\\config\\activated_controller.list");
 		HashSet<String> activated_controller_set = null;
 		
 		/*
