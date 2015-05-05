@@ -19,21 +19,21 @@ public class Message extends GenericMessage<GenericUser, GenericContent> impleme
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * 
+	 * Le contenu du message.
 	 */
 	protected String msg;
     /**
-     * 
+     * Le nom de l'utilisateur ayant envoye le message.
      */
     protected Utilisateur user;
     /**
-     * 
+     * L'heure a laquelle a ete envoye le message.
      */
     protected String time;
 
-    /**
-     * @param msg
-     * @param user
+    /** Cree un nouveau message.
+     * @param msg Le contenu du message
+     * @param user Le nom de l'utilisateur.
      */
     public Message(String msg, Utilisateur user) {
     	super(user,new TextContent(msg));
@@ -44,15 +44,15 @@ public class Message extends GenericMessage<GenericUser, GenericContent> impleme
         this.time = formater.format(new Date());
     }
 
-    /**
-     * @return
+    /** Recupere le contenu du message.
+     * @return le contenu du message.
      */
     public String getMessage() {
         return msg;
     }
 
-    /**
-     * @return
+    /** Recupere le nom de l'utilisateur.
+     * @return l'utilisateur ayant envoye le message.
      */
     public Utilisateur getUser() {
         return user;

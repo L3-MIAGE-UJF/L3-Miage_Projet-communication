@@ -19,22 +19,22 @@ public class GenericMessagesList<M extends GenericMessage> {
         messagesList = new ArrayList<>();
     }
     
-    /** Ajoute un message à la liste
-     * @param message Le message à ajouter
+    /** Ajoute un message a� la liste
+     * @param message Le message a� ajouter
      */
     public void addMessage(M message) {
         messagesList.add(message);
     }
     
-    /** Récupère la liste de messages
+    /** Recupere la liste de messages
      * @return La liste des messages
      */
     public ArrayList<M> getAllMessages() {
         return messagesList;
     }
     
-    /** Récupère les messages d'un utilisateur spécifique
-     * @param user L'utilisateur recherché
+    /** Recupere les messages d'un utilisateur specifique
+     * @param user L'utilisateur recherche
      * @return Les messages de l'utilisateur
      */
     public ArrayList<M> getMessages(GenericUser user) {
@@ -49,7 +49,7 @@ public class GenericMessagesList<M extends GenericMessage> {
     }
     
     /** Permet de faire un affichage de la liste de messages
-     * @return Une chaîne contenant la liste des messages mise en forme
+     * @return Une chaine contenant la liste des messages mise en forme
      */
     @Override
     public String toString() {

@@ -19,8 +19,8 @@ public class GenericMessage<U extends GenericUser, C extends GenericContent> {
 
     
     
-    /** Créé un GenericMessage
-     * @param sender Expéditeur du message
+    /** Cree un GenericMessage
+     * @param sender Expediteur du message
      * @param content Contenu du message
      */
     public GenericMessage(U sender, C content) {
@@ -30,7 +30,7 @@ public class GenericMessage<U extends GenericUser, C extends GenericContent> {
         this.time = format.format(new Date());
     }
 
-    /** Créé un GenericMessage
+    /** Cree un GenericMessage
      * @param receiver
      * @param content Contenu du message
      */
@@ -40,35 +40,35 @@ public class GenericMessage<U extends GenericUser, C extends GenericContent> {
         this.time = format.format(new Date());
     }*/
 
-    /** Permet de récupérer l'expéditeur
-     * @return L'expéditeur du message
+    /** Permet de recuperer l'expediteur
+     * @return L'expediteur du message
      */           
     public U getSender() {
         return sender;
     }
 
-    /** Permet de récupérer le récepteur
-     * @return Le récepteur du message
+    /** Permet de recuperer le recepteur
+     * @return Le recepteur du message
      */
     /*public R getReceiver() {
         return receiver;
     }*/
 
-    /** Permet de récupérer le contenu du message
+    /** Permet de recuperer le contenu du message
      * @return Le contenu du message
      */
     public C getContent() {
         return content;
     }
 
-    /** Permet de récupérer l'heure de création du message
+    /** Permet de recuperer l'heure de creation du message
      * @return L'heure du message
      */
     public String getTime() {
         return time;
     }
 
-    /** Affiche le message avec son heure et son expéditeur
+    /** Affiche le message avec son heure et son expediteur
      * @return Le message
      */
     @Override

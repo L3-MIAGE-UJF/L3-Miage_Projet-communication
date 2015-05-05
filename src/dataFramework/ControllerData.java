@@ -17,12 +17,13 @@ public class ControllerData extends Controller{
 	 */
 	private GenericDiscussion discussion;
 	/**
-	 * 
+	 * L'utilisateur ayant cree l'application client.
 	 */
 	private GenericUser currentUser = null;
 	
 	/**
-	 * @param str
+	 * Cree une nouvelle discussion avec un utilisateur pour l'application client.
+	 * @param str Le nom de l'utilisateur courant.
 	 */
 	public ControllerData(String str){
 		super();
@@ -32,7 +33,7 @@ public class ControllerData extends Controller{
 	
 
 	/**
-	 * 
+	 * Cree une nouvelle discussion
 	 */
 	public ControllerData() {
 		super();
@@ -40,35 +41,37 @@ public class ControllerData extends Controller{
 	}
 	
 	/**
-	 * @param str
+	 * Rajoute un utilisateur a la discussion.
+	 * @param str Le nom de l'utilisateur.
 	 */
 	public void addUser(String str){
 		this.discussion.addUser(str);
 	}
 	
 	/**
-	 * @param message
+	 * Rajoute un message dans la discussion.
+	 * @param message Le nouveau message.
 	 */
 	public void addMessage(GenericMessage message){
 		this.discussion.add(message);
 	}
 	
-	/**
-	 * @return
+	/** Recupere la discussion.
+	 * @return La discussion.
 	 */
 	public GenericDiscussion getDiscussion(){
 		return this.discussion;
 	}
 	
-	/**
-	 * @return
+	/** Recupere le dernier utilisateur a s'etre connecte
+	 * @return Le dernier utilisateur a s'etre connecte.
 	 */
 	public GenericUser getLastUser(){
 		return this.discussion.getUsers().getUser(this.discussion.getUsers().size()-1);
 	}
 	
-	/**
-	 * @return
+	/** Recupere la liste des utilisateurs.
+	 * @return Les utilisateurs sous forme de String
 	 */
 	public String showUsers() {
 		String result = "";
@@ -78,12 +81,14 @@ public class ControllerData extends Controller{
 		return result;
 	}
 	
+	
+	@Override
 	public String toString() {
 		return this.discussion.toString();
 	}
 	
-	/**
-	 * @return
+	/** Recupere l'utilisateur courant.
+	 * @return L'utilisateur courant.
 	 */
 	public GenericUser getCurrentUser(){
 		return this.currentUser;

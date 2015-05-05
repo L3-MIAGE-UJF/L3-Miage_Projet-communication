@@ -14,40 +14,40 @@ public class GenericUser implements Serializable{
     /**
      * 
      */
-    String login; // Identifiant dans la conversation, peut ne pas Ãªtre unique
+    String login; // Identifiant dans la conversation, peut ne pas être unique
 
-    /**
-     * @param id
-     * @param login
+    /** Cree un nouveau GenericUser.
+     * @param id L'id de l'utilisateur.
+     * @param login Le nom de l'utilisateur.
      */
     public GenericUser(int id, String login) {
         this.id = id;
         this.login = login;
     }  
     
-    /**
-     * @param login
+    /** Cree un nouveau GenericUser
+     * @param login Le nom de l'utilisateur.
      */
     public GenericUser(String login){
     	this.login = login;
     }
     
-    /**
-     * @return
+    /** Recupere l'id de l'utilisateur.
+     * @return L'id de l'utilisateur.
      */
     public int getId() {
         return this.id;
     }
         
-    /**
-     * @return
+    /** Recupere le login de l'utilisateur.
+     * @return Le login de l'utilisateur.
      */
     public String getLogin() {
         return this.login;
     }
     
-    /**
-     * @param id
+    /** Assigne un id a l'utilisateur.
+     * @param id Le numero d'utilisateur.
      */
     public void setId(int id){
     	this.id = id;

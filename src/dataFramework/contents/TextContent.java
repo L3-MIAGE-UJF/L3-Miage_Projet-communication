@@ -17,9 +17,6 @@ public class TextContent extends GenericContent {
         this.content = content;
     }
     
-    public String getContent() {
-    	return content;
-    }
 
     @Override
     public String toString() {

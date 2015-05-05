@@ -29,7 +29,7 @@ public class GenericDiscussion<UL extends GenericUsersList, ML extends GenericMe
     }
     
     
-    /** Créer une nouvelle discussion
+    /** Creer une nouvelle discussion
      * @param users Liste d'utilisateurs
      * @param messages Liste de messages
      */
@@ -38,21 +38,21 @@ public class GenericDiscussion<UL extends GenericUsersList, ML extends GenericMe
         this.messagesList = messages;
     }
     
-    /** Permet de récupérer la liste des messages
+    /** Permet de recuperer la liste des messages
      * @return Liste des messages de la discussion
      */
     public ML getMessages() {
         return messagesList;
     }
     
-    /** Ajoute un message à la discussion
-     * @param message Message à ajouter
+    /** Ajoute un message a� la discussion
+     * @param message Message a� ajouter
      */
     public void add(M message) {
         this.messagesList.addMessage(message);
     }
     
-    /** Permet de récupérer la liste des messages
+    /** Permet de recuperer la liste des messages
      * @return Liste des utilisateurs de la discussion
      */
     public UL getUsers() {
