@@ -30,7 +30,7 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 	/**
 	 * 
 	 */
-	// TODO Integrer liste Client plus optimisé
+	// TODO Integrer liste Client plus optimise
 	private volatile ArrayList<ModelRMIClientRemote> clients;
 
 	/**
@@ -47,7 +47,6 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 		super();
 		this.controllerAppServer = controllerrmiserv;
 		launchServer(getFirstNonLocalAdress());
-		// InetAddress.getLocalHost().getHostAddress();
 	}
 
 	/**
@@ -101,6 +100,7 @@ public class ModelRMIServer<C extends Controller> extends UnicastRemoteObject im
 
 			System.out.println("ModelRMIServer UID=" + serialVersionUID
 					+ " : Mise en place du Security Manager ...");
+			
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}

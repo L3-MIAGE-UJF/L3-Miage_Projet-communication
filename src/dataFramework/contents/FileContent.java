@@ -12,7 +12,7 @@ public class FileContent extends TextContent {
      */
     protected File file;
 
-    /** Crée un nouveau FileContent
+    /** Cree un nouveau FileContent
      * @param content Texte du message
      * @param file Fichier joint au message
      */ 
@@ -21,8 +21,8 @@ public class FileContent extends TextContent {
         this.file = file;
     }
 
-    /** Récupère le fichier du TextContent
-     * @return Le fichier associé au TextContent
+    /** Recupere le fichier du TextContent
+     * @return Le fichier associe au TextContent
      */
     public File getFile() {
         return file;

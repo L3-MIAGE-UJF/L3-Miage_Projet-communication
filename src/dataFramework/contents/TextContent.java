@@ -1,7 +1,7 @@
 package dataFramework.contents;
 
 /**
- * @author douchetm
+ * @author groupe1
  *
  */
 public class TextContent extends GenericContent {
@@ -10,13 +10,16 @@ public class TextContent extends GenericContent {
      */
     String content;
     
-    /** Créé un nouveau TextContent
+    /** Cree un nouveau TextContent
      * @param content Le texte du message
      */
     public TextContent(String content) {
         this.content = content;
     }
     
+    public String getContent() {
+    	return content;
+    }
 
     @Override
     public String toString() {
