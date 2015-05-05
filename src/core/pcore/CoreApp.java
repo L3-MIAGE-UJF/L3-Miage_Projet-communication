@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import onodes.RMI.Server.*;
 import onodes.RMI.Client.*;
 import pnodes.monAppClient.ControllerMonAppClient;
+import pnodes.monAppClientGeneric.ControllerMonApp;
 import pnodes.monAppServer.ControllerMonAppServer;
+import pnodes.monAppServerGeneric.rmiserver.ControllerMonAppRMIServer;
 
 
 /**
@@ -21,7 +23,25 @@ public final class CoreApp {
 	 * DevOps Write some code here
 	 * @param args
 	 */
+	
+
 	public static void mainApp(String[] args) {
+		
+		try {
+			ControllerMonAppRMIServer test = new ControllerMonAppRMIServer();
+			
+			Thread.sleep(100);
+			ControllerMonApp test1 = new ControllerMonApp();
+			
+			//ControllerMonAppRMIClient test2 = new ControllerMonAppRMIClient();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*
 		try {
 			ControllerMonAppServer testserver = new ControllerMonAppServer();
 
@@ -32,7 +52,7 @@ public final class CoreApp {
 			
 			testserver.startTESTAll();
 			
-			System.out.println((String) testserver.startTESTOne(0));
+			//System.out.println((String) testserver.startTESTOne(0));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -40,7 +60,9 @@ public final class CoreApp {
 		}
 		
 		//ControllerRMIServer<ModelRMIServer<ModelRMIServerRemote<ModelRMIClientRemote>, ModelRMIClientRemote>, ViewRMIServer> test = new ControllerRMIServer<ModelRMIServer, ViewRMIServer>(new ModelRMIServer<ModelRMIServerRemote, ModelRMIClientRemote>, new ViewRMIServer())
+		 * 	*/
 	}
+
 
 	/*
 	 * Main functions of the application
