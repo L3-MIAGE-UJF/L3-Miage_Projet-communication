@@ -93,7 +93,7 @@ public class ModelRMIClient<C extends Controller> extends
 			this.modelRMIServerR.registerClient(this);
 			
 			System.out.println("ModelRMIClient UID=" + serialVersionUID
-					+ " : Client Lancé");
+					+ " : Client Lance");
 			System.out
 					.println("=================================================================");
 		} catch (RemoteException e) {

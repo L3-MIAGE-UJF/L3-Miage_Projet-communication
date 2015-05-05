@@ -1,6 +1,7 @@
 package pnodes.AppChatClient;
 
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
@@ -20,8 +21,17 @@ public class ViewFenetreChat extends JFrame implements Observer,View {
 	 /**
 	 * 
 	 */
-	private static final long serialVersionUID = 28115002905815442L;
-
+	private static final long serialVersionUID = 28115002905815442L;                   
+    private javax.swing.JButton jButton1;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextPane jTextPane1;                 
+    private ViewAppChatClient view;
+    private ControllerAppChatClient controller;
 	/**
 	 * @param controller
 	 * @param view
@@ -35,7 +45,7 @@ public class ViewFenetreChat extends JFrame implements Observer,View {
 	 }
                 
     /**
-     * 
+     * Initialise la fenetre graphique
      */
     private void initComponents() {
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -66,7 +76,6 @@ public class ViewFenetreChat extends JFrame implements Observer,View {
 
         jButton1.setText("Envoyer");
         jButton1.addActionListener(new DiscussionListener(this.view));
-            
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -116,32 +125,30 @@ public class ViewFenetreChat extends JFrame implements Observer,View {
     }                        
 
     /**
-     * @author douchetm
-     *
+     * @author groupe1
+     * 
      */
     class DiscussionListener implements ActionListener{
     	private ViewAppChatClient view;
     	public DiscussionListener(ViewAppChatClient view){
     		this.view = view;
     	}
+		/**
+		 * Signale a la vue qu'il y a eu une action d'envoie de message.
+		 *
+		 */
     	public void actionPerformed(java.awt.event.ActionEvent evt) {
     			this.view.buttonRemoteActionMessage(evt,jTextPane1.getText());
         }
     }                            
 
- 
-                    
-    private javax.swing.JButton jButton1;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextPane jTextPane1;                 
-    private ViewAppChatClient view;
-    private ControllerAppChatClient controller;
+
     
+	/**
+	 * Met a jour la discussion.
+	 * @param o 
+	 * @param arg La chaine de caractere contenant la discussion.
+	 */
     @Override
 	public void update(Observable o, Object arg) {
 			this.jTextArea1.setText( arg.toString());
@@ -149,8 +156,9 @@ public class ViewFenetreChat extends JFrame implements Observer,View {
 	}
     
     /**
+	 * Met a jour la liste des utilisateurs
      * @param o
-     * @param arg
+     * @param arg La chaine de caractere contenant les utilisateurs.
      */
     public void update_user(Observable o, Object arg) {
     	this.jTextArea2.setText((String) arg);

@@ -16,25 +16,26 @@ import pnodes.AppChatClient.ViewFenetreLog;
 public class ViewAppChatClient implements View,Observer {
 
 	/**
-	 * 
+	 * Le controleur qui instancie la vue.
 	 */
 	private ControllerAppChatClient controller;
 
 	/**
-	 * 
+	 * La fenetre de login.
 	 */
 	private ViewFenetreLog log;
 	/**
-	 * 
+	 * La fenetre de chat.
 	 */
 	private ViewFenetreChat chat;
 	/**
-	 * 
+	 * Indique si la vue a deja recu la demande de connexion
 	 */
 	private boolean login = true;
 	
 	/**
-	 * @param controller
+	 * Construit l'objet ViewAppChatClient qui initialise les fenetres graphiques.
+	 * @param controller 
 	 */
 	public ViewAppChatClient(ControllerAppChatClient controller) {
 		this.controller=controller;
@@ -45,8 +46,9 @@ public class ViewAppChatClient implements View,Observer {
 	
 	
 	/**
-	 * @param evt
-	 * @param str
+	 * Demande au controleur de reorienter la methode d'ajout d'utilisateur au modele.
+	 * @param evt L'evenement d'ajout d'utilisateur.
+	 * @param str La chaine de caractère représentant le nom de l'utilisateur.
 	 */
 	public void buttonActionLogin(java.awt.event.ActionEvent evt,String str) {
 		this.controller.actionBoutonLogin(str);
@@ -56,13 +58,19 @@ public class ViewAppChatClient implements View,Observer {
 	}
 
 	/**
-	 * @param evt
-	 * @param str
+	 * Demande au controleur de reorienter la methode d'envoie de message au modele.
+	 * @param evt L'evenement d'envoie de message.
+	 * @param str La chaine de caractère représentant le contenu d'un message.
 	 */
 	public void buttonRemoteActionMessage(java.awt.event.ActionEvent evt,String str) {
 		this.controller.actionBoutonRemoteMessage(str);
 	}
 	
+	/**
+	 * Met à jour les fenetres graphiques en fonction de la nature des paramatres.
+	 * @param o
+	 * @param arg Objet correspondant a 
+	 */
 	public void update(Observable o, Object arg) {
 		if(!login){
 			try {

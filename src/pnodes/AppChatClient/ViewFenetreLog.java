@@ -20,7 +20,9 @@ public class ViewFenetreLog extends JFrame implements Observer,View {
 	 * 
 	 */
 	private static final long serialVersionUID = -7073117859384428054L;
-
+	private javax.swing.JButton jButton1;
+    private javax.swing.JTextField jTextField1;
+    private ViewAppChatClient view;
 
 	/**
 	 * @param controller
@@ -33,7 +35,7 @@ public class ViewFenetreLog extends JFrame implements Observer,View {
     }
 
     /**
-     * 
+     * Initialise la fenetre graphique
      */
     private void initComponents() {
         jTextField1 = new javax.swing.JTextField();
@@ -71,9 +73,7 @@ public class ViewFenetreLog extends JFrame implements Observer,View {
         this.pack();
     }
 
-    private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
-    private ViewAppChatClient view;
+
     
     class PressLog implements ActionListener{
     	private ViewAppChatClient view;
@@ -81,6 +81,10 @@ public class ViewFenetreLog extends JFrame implements Observer,View {
     		this.view = view;
     		
     	}
+		/**
+		 * Signale a la vue qu'il y a eu une action de connexion en tant qu'utilisateur.
+		 *
+		 */
     	public void actionPerformed(java.awt.event.ActionEvent evt) {
     			this.view.buttonActionLogin(evt,jTextField1.getText());
         }

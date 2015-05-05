@@ -18,20 +18,21 @@ import dataFramework.users.GenericUser;
 public class ModelAppChatClient extends Observable implements Model {
 
 	/**
-	 * 
+	 * Le controleur permettant d'invoquer les methodes sur le serveur.
 	 */
 	private ControllerRMIClient<ControllerAppChatClient> cRMIc;
 	/**
-	 * 
+	 * Le controller servant a gérer les utilisateurs, discussions et messages en local
 	 */
 	private ControllerData controller;
 	/**
-	 * 
+	 * La liste des utilisateurs connecté dans la discussion.
 	 */
 	private String list_user;
 	
-	/**
-	 * @param controllerAppClient
+	/** 
+	 * Construit l'objet ModelAppChatClient avec l'adresse ip en dur.
+	 * @param controllerAppClient Le controller du model.
 	 * @throws RemoteException
 	 */
 	public ModelAppChatClient(ControllerAppChatClient controllerAppClient) throws RemoteException {
@@ -39,18 +40,20 @@ public class ModelAppChatClient extends Observable implements Model {
 		controller = new ControllerData();
 	}
 
-	/**
-	 * @param methodName
-	 * @param cArgs
-	 * @param oArgs
-	 * @return
+	/** 
+	 * Invoque les methodes sur le serveur.
+	 * @param methodName Le nom de la methode stocke sur le serveur.
+	 * @param cArgs Les classes des parametres de la methode.
+	 * @param oArgs Les parametres de la methode.
+	 * @return Autorise le retour via la methode.
 	 */
 	public Object invokeMethodOnControllerAppServer(String methodName, Class[] cArgs, Object[] oArgs) {
 		return cRMIc.invokeMethodOnControllerAppServer(methodName, cArgs, oArgs);
 	}
 	
-	/**
-	 * @param str
+	/** 
+	 * Sauvegarde le nom d'utilisateur courant et demande au serveur de signaler l'apparition d'un nouvel utilisateur.
+	 * @param str Le nom d'un utilisateur
 	 */
 	public void processingActionButton(String str) {	
 		controller = new ControllerData(str);
@@ -59,8 +62,9 @@ public class ModelAppChatClient extends Observable implements Model {
 		
 	}
 	
-	/**
-	 * @param str
+	/** 
+	 * Demande au serveur d'ajouter un nouveau message a la discussion.
+	 * @param str Le contenu du message.
 	 */
 	public void processingActionRemoteButton(String str) {
 		try {
@@ -70,25 +74,26 @@ public class ModelAppChatClient extends Observable implements Model {
 		}
 	}
 	
-	/**
-	 * 
+	/** 
+	 * Notifie aux observer qu'ils doivent mettre à jour la discussion.
 	 */
 	public void majDiscussion(){
 		setChanged();
 		notifyObservers(controller.getDiscussion());
 	}
 	
-	/**
-	 * 
+	/** 
+	 * Notifie aux observer qu'ils doivent mettre à jour la liste des utilisateurs.
 	 */
 	public void majUtilisateur(){
 		setChanged();
 		notifyObservers(list_user);
 	}
 	
-	/**
-	 * @param str
-	 * @param user
+	/** 
+	 * Ajoute un message a la discussion.
+	 * @param str Le contenu du message
+	 * @param user l'utilisateur
 	 */
 	public void addMessage (String str, GenericUser user){ 
     	GenericMessage<GenericUser, TextContent> message = new GenericMessage<GenericUser, TextContent>(user, new TextContent(str));
@@ -96,8 +101,9 @@ public class ModelAppChatClient extends Observable implements Model {
 		majDiscussion();
 	}
 	
-	/**
-	 * @param user
+	/** 
+	 * Sauvegarde en local la liste des utilisateurs.
+	 * @param user La chaine de caractere contenant les noms des utilisateurs
 	 */
 	public void addUser (String user){
 		list_user = user;

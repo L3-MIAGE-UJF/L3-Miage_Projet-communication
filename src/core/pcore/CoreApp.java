@@ -17,7 +17,6 @@ public final class CoreApp {
 
 	}
 
-
 	/*
 	 * Main functions of the application
 	 * DevOps Write some functions here
