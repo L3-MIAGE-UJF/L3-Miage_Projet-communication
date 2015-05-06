@@ -29,7 +29,7 @@ public class ModelMonApp extends Observable implements Model {
 	 */
 	public ModelMonApp() throws RemoteException {
 		try {
-			cmapp=new ControllerMonAppRMIClient("152.77.82.219");
+			cmapp=new ControllerMonAppRMIClient("152.77.82.218");
 
 			remoteMod=cmapp.getmRMIServerRemote();
 		}

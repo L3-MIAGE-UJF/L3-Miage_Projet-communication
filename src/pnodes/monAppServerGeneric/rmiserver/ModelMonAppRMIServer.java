@@ -35,6 +35,6 @@ public class ModelMonAppRMIServer extends
 		/*
 		 * Completez / modifiez le code
 		 */
-		this.callMethodOnAllClients(client.getClass() ,"clientRegistered", new Class[] {});
+		//this.callMethodOnAllClients(client.getClass() ,"clientRegistered", new Class[] {});
 	}
 }
