@@ -23,6 +23,9 @@ import core.pcore.CoreApp;
 * modules souhaites par le developpeur.
 * Une fois les modules instancies le main donne la main a mainApp() defini par le developpeur
 * dans CoreApp.
+* 
+* pnodes correspond aux modules personnels concu par le developpeur, a l'opposition de onodes
+* qui contient des modules de base internes au framework.
 *
 * 
 * @author groupe1

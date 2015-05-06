@@ -1,9 +1,16 @@
 ######################################################
 # Liste des controleurs a activer                    #
 ######################################################
+# Les controleurs listes dans ce fichier             #
+# seront instancies par Core au demarrage de         #
+# l'application.                                     #
 #                                                    #
 # Les controleurs developpes doivent se trouver dans #
 # leur package respectif dans pnodes                 #
+#                                                    #
+# pnodes correspond aux modules personnels concu par #
+# le developpeur, a l'opposition de onodes qui       #
+# contient des modules de base internes au framework #
 ######################################################
 
 #Application RMI Server
