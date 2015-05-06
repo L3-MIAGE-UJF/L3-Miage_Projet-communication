@@ -18,3 +18,4 @@ pnodes.monAppClientGeneric
 pnodes.monAppClientGeneric.rmiclient
 pnodes.monAppServer
 pnodes.monAppServerGeneric.rmiserver
+pnodes.socketClient
