@@ -19,13 +19,6 @@ public class ModelMonAppRMIClient extends
 	private static final long serialVersionUID = -6077450206617157617L;
 
 	/**
-	 * @throws RemoteException
-	 */
-	public ModelMonAppRMIClient() throws RemoteException {
-		super();
-	}
-
-	/**
 	 * @param ip
 	 * @throws RemoteException
 	 */

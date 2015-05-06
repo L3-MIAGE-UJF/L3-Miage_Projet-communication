@@ -13,15 +13,34 @@
 # contient des modules de base internes au framework #
 ######################################################
 
-#Application RMI Server
+######################################################
+# Application 1 RMI
+#
+# Application RMI Server
 #pnodes.monAppServer.ControllerMonAppServer
-
-#Application RMI Client
-#Besoin de coder IP en dur
+#
+# Application RMI Client
+# Besoin de coder IP en dur
 #pnodes.monAppClient.ControllerMonAppClient
+######################################################
 
-#Application Chat Server
+######################################################
+# Application 2 RMI
+#
+# Application RMI Server Generic
+#pnodes.monAppServerGeneric.rmiserver.ControllerMonAppRMIServer
+#
+# Application RMI Client Generic
+# Besoin de coder IP en dur
+#pnodes.monAppClientGeneric.ControllerMonApp
+######################################################
+
+######################################################
+# Application 3 RMI Chat
+#
+# Application Chat Server
 #pnodes.AppChatServer.ControllerAppChatServer
-
-#Application Chat Client
+#
+# Application Chat Client
 #pnodes.AppChatClient.ControllerAppChatClient
+######################################################

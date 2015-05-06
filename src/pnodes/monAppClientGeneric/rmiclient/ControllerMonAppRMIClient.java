@@ -15,8 +15,8 @@ public class ControllerMonAppRMIClient extends
 	/**
 	 * @throws RemoteException
 	 */
-	public ControllerMonAppRMIClient() throws RemoteException {
-		super(new ModelMonAppRMIClient(), new ViewMonAppRMIClient());
+	public ControllerMonAppRMIClient(String ip) throws RemoteException {
+		super(new ModelMonAppRMIClient(ip), new ViewMonAppRMIClient());
 	}
 
 	/**

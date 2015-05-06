@@ -29,14 +29,9 @@ public class ModelMonApp extends Observable implements Model {
 	 */
 	public ModelMonApp() throws RemoteException {
 		try {
-			cmapp=new ControllerMonAppRMIClient();
-			if (cmapp==null) {
-				System.err.println("ERREUR cmapp SALE CONNARD");
-			}
+			cmapp=new ControllerMonAppRMIClient("152.77.82.219");
+
 			remoteMod=cmapp.getmRMIServerRemote();
-			if (remoteMod==null) {
-				System.err.println("ERREUR remoteMod SALE CONNARD");
-			}
 		}
 		catch (NullPointerException e) {
 			e.getMessage();

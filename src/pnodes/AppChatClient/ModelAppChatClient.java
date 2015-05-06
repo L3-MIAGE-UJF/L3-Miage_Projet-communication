@@ -22,11 +22,11 @@ public class ModelAppChatClient extends Observable implements Model {
 	 */
 	private ControllerRMIClient<ControllerAppChatClient> cRMIc;
 	/**
-	 * Le controller servant a gérer les utilisateurs, discussions et messages en local
+	 * Le controller servant a gerer les utilisateurs, discussions et messages en local
 	 */
 	private ControllerData controller;
 	/**
-	 * La liste des utilisateurs connecté dans la discussion.
+	 * La liste des utilisateurs connecte dans la discussion.
 	 */
 	private String list_user;
 	
@@ -36,7 +36,7 @@ public class ModelAppChatClient extends Observable implements Model {
 	 * @throws RemoteException
 	 */
 	public ModelAppChatClient(ControllerAppChatClient controllerAppClient) throws RemoteException {
-		cRMIc = new ControllerRMIClient<ControllerAppChatClient>(controllerAppClient, "152.77.82.74"); // A definir ip du serveur
+		cRMIc = new ControllerRMIClient<ControllerAppChatClient>(controllerAppClient, "152.77.82.218"); // A definir ip du serveur
 		controller = new ControllerData();
 	}
 
@@ -75,7 +75,7 @@ public class ModelAppChatClient extends Observable implements Model {
 	}
 	
 	/** 
-	 * Notifie aux observer qu'ils doivent mettre à jour la discussion.
+	 * Notifie aux observer qu'ils doivent mettre ï¿½ jour la discussion.
 	 */
 	public void majDiscussion(){
 		setChanged();
@@ -83,7 +83,7 @@ public class ModelAppChatClient extends Observable implements Model {
 	}
 	
 	/** 
-	 * Notifie aux observer qu'ils doivent mettre à jour la liste des utilisateurs.
+	 * Notifie aux observer qu'ils doivent mettre ï¿½ jour la liste des utilisateurs.
 	 */
 	public void majUtilisateur(){
 		setChanged();

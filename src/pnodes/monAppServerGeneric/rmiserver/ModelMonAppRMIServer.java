@@ -18,13 +18,6 @@ public class ModelMonAppRMIServer extends
 	private static final long serialVersionUID = 4780327763814969334L;
 
 	/**
-	 * @throws RemoteException
-	 */
-	public ModelMonAppRMIServer() throws RemoteException {
-		super();
-	}
-
-	/**
 	 * @param ip
 	 * @throws RemoteException
 	 */
