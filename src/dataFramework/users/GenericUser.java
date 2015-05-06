@@ -8,13 +8,13 @@ import java.io.Serializable;
  */
 public class GenericUser implements Serializable{
     /**
-     * 
+     * Identifiant unique de l'utilisateur
      */
-    int id; // Identifiant unique de l'utilisateur
+    int id;
     /**
-     * 
+     * Identifiant dans la conversation, peut ne pas être unique
      */
-    String login; // Identifiant dans la conversation, peut ne pas être unique
+    String login; 
 
     /** Cree un nouveau GenericUser.
      * @param id L'id de l'utilisateur.

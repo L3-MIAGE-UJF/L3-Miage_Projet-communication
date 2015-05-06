@@ -6,7 +6,7 @@ package onodes;
 * 
 * Classe Abstraite définissant les élements de base d'un controleur.
 * Chaque controleur d'un "module" / "package" défini selon le pattern MVC simplifié
-* devra étendre cette Class ou une Classe fille.  
+* devra etendre cette Class ou une Classe fille.  
 * 
 * @author groupe1
 *

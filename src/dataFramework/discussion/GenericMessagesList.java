@@ -8,7 +8,7 @@ import dataFramework.users.GenericUser;
 /**
  * @author groupe1
  *
- * @param <M>
+ * @param <M> Type d'un message, doit etendre GenericMessage
  */
 public class GenericMessagesList<M extends GenericMessage> {
     private ArrayList<M> messagesList;

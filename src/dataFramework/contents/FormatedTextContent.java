@@ -6,7 +6,7 @@ package dataFramework.contents;
  */
 public abstract class FormatedTextContent extends GenericContent {
     /**
-     * 
+     * Contenu du message sous forme de texte potentiellement formate
      */
     String content;
     

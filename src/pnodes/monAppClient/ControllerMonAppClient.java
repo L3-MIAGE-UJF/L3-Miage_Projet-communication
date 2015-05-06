@@ -5,6 +5,16 @@ import java.rmi.RemoteException;
 import onodes.Controller;
 
 /**
+ * 
+ * Ce module constitue une application temoin client minimaliste pour l'etablissement
+ * d'une connexion entre deux applications par RMI.
+ * Ce avec la specificite que l'appel de methode distante se fait par l'usage de 
+ * invokeMethodOnControllerAppServer(). Ceci est realisable grace a l'instanciation 
+ * du module RMIClient non generique. Plus de details dans : ControllerRMIClient
+ * 
+ * Le fonctionnement est tel que le developpeur doit s'inspirer ou ameliorer ce module
+ * pour la creation de son application / module
+ * 
  * @author groupe1
  *
  */

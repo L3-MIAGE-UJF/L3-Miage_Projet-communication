@@ -7,6 +7,13 @@ import dataFramework.users.GenericUser;
 import onodes.Controller;
 
 /**
+ * 
+ * Ce module constitue une application temoin serveur minimaliste pour l'etablissement d'un
+ * chat entre plusieurs application clients par le biais d'un serveur.
+ * 
+ * Le fonctionnement est tel que le developpeur peut s'inspirer ou ameliorer ce module
+ * pour la creation de son application chat.
+ * 
  * @author groupe1
  *
  */

@@ -7,7 +7,7 @@ import dataFramework.users.GenericUser;
 /**
  * @author groupe1
  *
- * @param <U>
+ * @param <U> Type d'un utilisateur, doit etendre GenericUser
  */
 public class GenericUsersList<U extends GenericUser> {
     private ArrayList<U> usersList;

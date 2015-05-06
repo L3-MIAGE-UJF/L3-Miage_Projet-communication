@@ -6,7 +6,7 @@ package dataFramework.contents;
  */
 public class TextContent extends GenericContent {
     /**
-     * 
+     * Contenu du message sous forme de texte
      */
     String content;
     

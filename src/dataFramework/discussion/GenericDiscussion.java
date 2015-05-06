@@ -6,9 +6,9 @@ import dataFramework.users.GenericUser;
 /**
  * @author groupe1
  *
- * @param <UL>
- * @param <ML>
- * @param <M>
+ * @param <UL> Type de la liste des utilisateurs, UL doit tendre GenericUsersList
+ * @param <ML> Type de la liste des messages, ML doit etendre GenericMessageList 
+ * @param <M> Type d'un message, doit etendre GenericMessage
  */
 public class GenericDiscussion<UL extends GenericUsersList, ML extends GenericMessagesList, M extends GenericMessage> {
     /**

@@ -34,15 +34,14 @@ public class ModelMonAppRMIServer extends
 
 	@Override
 	public String methodeserveur() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected void actionOnClientRegistration(ModelMonAppRMIClientRemote client) {
 		/*
-		 * Complétez le code ici
+		 * Completez / modifiez le code
 		 */
-		this.callMethodOnAllClients(client.getClass() ,"mamethodealacon", new Class[] {});
+		this.callMethodOnAllClients(client.getClass() ,"clientRegistered", new Class[] {});
 	}
 }

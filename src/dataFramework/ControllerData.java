@@ -8,7 +8,7 @@ import dataFramework.users.GenericUser;
 
 /**
  * @author groupe1
- *
+ * Ce controleur doit permettre d'acceder aux donnees stockees, ici elles sont sous formes de classes de donnees
  */
 public class ControllerData extends Controller{
 
