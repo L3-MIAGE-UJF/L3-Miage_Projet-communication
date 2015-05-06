@@ -10,7 +10,7 @@ import onodes.Controller;
  */
 public class ControllerMonAppClient extends Controller<ModelMonAppClient, ViewMonAppClient> {
 
-	/**
+	/** Cree un controleur qui permet d'acceder au modele et a la vue selon le modele MVC.
 	 * @throws RemoteException
 	 */
 	public ControllerMonAppClient() throws RemoteException {
@@ -19,15 +19,16 @@ public class ControllerMonAppClient extends Controller<ModelMonAppClient, ViewMo
 	}
 	
 	/**
-	 * 
+	 * Recupere le resultat de la methode testAppServer du serveur et l'affiche.
+	 * Permet de tester invokeMethodOnControllerAppServer.
 	 */
 	public void startTEST() {
 		String testretour = (String) model.invokeMethodOnControllerAppServer("testAppServer", new Class[] {}, new Object[] {});
 		System.out.println(testretour);
 	}
 	
-	/**
-	 * @return
+	/** Renvoie un String pour tester un appel de methode du serveur au client.
+	 * @return Un String.
 	 */
 	public String testAppClient() {
 		return "retour methode de test sur client";

@@ -17,7 +17,7 @@ public class ControllerAppChatServer extends Controller<ModelAppChatServer, View
 	 */
 	private ControllerData controller;
 	
-	/**
+	/** Cree un controleur avec un modele et une vie.
 	 * @throws RemoteException
 	 */
 	public ControllerAppChatServer() throws RemoteException {
@@ -26,24 +26,24 @@ public class ControllerAppChatServer extends Controller<ModelAppChatServer, View
 		controller =new ControllerData();
 	}
 
-	/**
-	 * @param model
-	 * @param view
+	/** Cree un controleur associe a un modele et une vue.
+	 * @param model Le modele associe au controleur.
+	 * @param view La vue associe au controleur.
 	 */
 	public ControllerAppChatServer(ModelAppChatServer model, ViewAppChatServer view) {
 		super(model, view);
 	}
 	
-	/**
-	 * @param body
-	 * @param user
+	/** Signale a tous les utilisateurs d'ajouter un message.
+	 * @param body Le contenu d'un message.
+	 * @param user L'utilisateur postant le message.
 	 */
 	public void addMessage(String body, GenericUser user){
 		model.invokeMethodOnAllControllerAppClient("addMessage", new Class[] {String.class, GenericUser.class}, new Object[] {body,user});
 	}
 	
-	/**
-	 * @param user
+	/** Signale a tous les utilisateurs d'ajouter un utilisateur a la liste.
+	 * @param user Le nom du nouvel utilisateur.
 	 */
 	public void addUser(String user){
 		controller.addUser(user);
