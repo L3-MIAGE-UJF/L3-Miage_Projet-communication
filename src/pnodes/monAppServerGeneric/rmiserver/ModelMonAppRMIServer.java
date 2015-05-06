@@ -27,7 +27,7 @@ public class ModelMonAppRMIServer extends
 
 	@Override
 	public String methodeserveur() throws RemoteException {
-		return null;
+		return "Je suis le serveur";
 	}
 
 	@Override

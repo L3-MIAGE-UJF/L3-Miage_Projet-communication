@@ -39,7 +39,7 @@
 # Application 3 RMI Chat
 #
 # Application Chat Server
-#pnodes.AppChatServer.ControllerAppChatServer
+pnodes.AppChatServer.ControllerAppChatServer
 #
 # Application Chat Client
 #pnodes.AppChatClient.ControllerAppChatClient
