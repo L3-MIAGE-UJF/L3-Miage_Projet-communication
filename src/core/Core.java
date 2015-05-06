@@ -27,6 +27,11 @@ import core.pcore.CoreApp;
 * pnodes correspond aux modules personnels concu par le developpeur, a l'opposition de onodes
 * qui contient des modules de base internes au framework.
 *
+*
+* A noter, il faut preciser les parametres suivants lors du lancement de l'application
+* ou dans les parametres de la VM java
+* 
+* -Djava.security.policy=/path/client_security.policy -Djava.security.policy=/path/server_security.policy
 * 
 * @author groupe1
 *
